@@ -22,6 +22,12 @@ $enable-rtl: true;
 // If you want to add something do it here
 @import "custom";
 
+// Prism.js
+@import '~prismjs/themes/prism-coy.css';
+
+// Angular Material theme
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 c-widget-stat-a.mb-4.bg-info.card.text-high-emphasis-inverse {

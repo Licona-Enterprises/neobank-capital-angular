@@ -109,7 +109,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/scss/styles.scss",
               "src/styles.css"
-              
+
             ],
             "scripts": [
               "node_modules/popper.js/dist/umd/popper.min.js",

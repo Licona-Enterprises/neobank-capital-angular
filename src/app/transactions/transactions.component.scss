@@ -13,3 +13,12 @@ td {
   box-shadow: inset 0 1px 0 #efeffd !important;
   background-color: #fff !important;
 }
+.mat-tab-labels,
+.mat-tab-body-wrapper {
+  flex-direction: column;
+}
+
+.vertical-layout {
+  display: flex;
+  flex-direction: column;
+}

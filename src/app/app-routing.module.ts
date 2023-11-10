@@ -4,6 +4,7 @@ import { PaySomeoneComponent } from './pay-someone/pay-someone.component';
 import { AddReceiveFundsComponent } from './add-receive-funds/add-receive-funds.component';
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { TransferFundsComponent } from './transfer-funds/transfer-funds.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './views/pages/page404/page404.component';
@@ -12,6 +13,12 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { TablesComponent } from './views/base/tables/tables.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { RequestsComponent } from './requests/requests.component';
+import { RecipientsComponent } from './recipients/recipients.component';
+import { WireDrawdownsComponent } from './wire-drawdowns/wire-drawdowns.component';
+import { CardsComponent } from './cards/cards.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { CapitalsComponent } from './capitals/capitals.component';
 
 const routes: Routes = [
   {
@@ -20,6 +27,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'pay-someone', component: PaySomeoneComponent },
+  { path: 'payments', component: PaymentsComponent },
   { path: 'add-receive-funds', component: AddReceiveFundsComponent },
   { path: 'payment-request', component: PaymentRequestComponent },
   { path: 'transfer-funds', component: TransferFundsComponent },
@@ -45,10 +53,53 @@ const routes: Routes = [
         },
       },
       {
+        path: 'requests',
+        component: RequestsComponent, // Add this line
+        data: {
+          title: 'Requests',
+        },
+      },
+      {
+        path: 'recipients',
+        component: RecipientsComponent, // Add this line
+        data: {
+          title: 'Recipients',
+        },
+      },
+      {
+        path: 'wire-drawdowns',
+        component: WireDrawdownsComponent, // Add this line
+        data: {
+          title: 'Wire Drawdowns',
+        },
+      },
+      {
+        path: 'capitals',
+        component: CapitalsComponent, // Add this line
+        data: {
+          title: 'Capitals',
+        },
+      },
+
+      {
         path: 'tables',
         component: TablesComponent,
         data: {
           title: 'Tables',
+        },
+      },
+      {
+        path: 'cards',
+        component: CardsComponent,
+        data: {
+          title: 'Cards',
+        },
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent,
+        data: {
+          title: 'Accounts',
         },
       },
       {

@@ -4,7 +4,16 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // Import routing module
@@ -39,13 +48,20 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { MatCardModule } from '@angular/material/card';
 import { MyModalComponent } from './my-modal/my-modal.component';
 import { BottomPopoverComponent } from './bottom-popover/bottom-popover.component';
 import { PaySomeoneComponent } from './pay-someone/pay-someone.component';
 import { AddReceiveFundsComponent } from './add-receive-funds/add-receive-funds.component';
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { TransferFundsComponent } from './transfer-funds/transfer-funds.component';
+import { PaymentsComponent } from './payments/payments.component';
+import {TransactionsComponent} from "./transactions/transactions.component";
+import { RequestsComponent } from './requests/requests.component';
+import { RecipientsComponent } from './recipients/recipients.component';
+import { WireDrawdownsComponent } from './wire-drawdowns/wire-drawdowns.component';
+import { CardsComponent } from './cards/cards.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { CapitalsComponent } from './capitals/capitals.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -54,8 +70,18 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent],
   imports: [
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatTreeModule,
+    MatCardModule,
+    MatListModule,
+    MatSlideToggleModule,
     NgbModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -82,7 +108,6 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    MatCardModule,
     NgScrollbarModule
   ],
   providers: [
@@ -96,4 +121,5 @@ const APP_CONTAINERS = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

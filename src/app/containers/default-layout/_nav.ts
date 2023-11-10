@@ -45,84 +45,38 @@ export const navItems: INavData[] = [
   // },
   {
     name: 'Payments',
-    url: '/base',
+    url: '/payments',
     iconComponent: { name: 'cil-puzzle' },
     children: [
       {
         name: 'Requests',
-        url: '/base/accordion'
+        url: '/requests',
+        // component: 'RequestsComponent'
       },
       {
         name: 'Recipients',
-        url: '/base/breadcrumbs'
+        url: '/recipients'
       },
       {
         name: 'Wire Drawdowns',
-        url: '/base/cards'
+        url: '/wire-drawdowns'
       },
     ]
   },
   {
     name: 'Cards',
-    url: '/buttons',
+    url: '/cards',
     iconComponent: { name: 'cil-cursor' },
-    // children: [
-    //   {
-    //     name: 'Buttons',
-    //     url: '/buttons/buttons'
-    //   },
-    //   {
-    //     name: 'Button groups',
-    //     url: '/buttons/button-groups'
-    //   },
-    //   {
-    //     name: 'Dropdowns',
-    //     url: '/buttons/dropdowns'
-    //   }
-    // ]
   },
   {
     name: 'Capital',
-    url: '/forms',
+    // url: '/cards',
+    url: '/capitals',
     iconComponent: { name: 'cil-notes' },
-    // children: [
-    //   {
-    //     name: 'Form Control',
-    //     url: '/forms/form-control'
-    //   },
-    //   {
-    //     name: 'Select',
-    //     url: '/forms/select'
-    //   },
-    //   {
-    //     name: 'Checks & Radios',
-    //     url: '/forms/checks-radios'
-    //   },
-    //   {
-    //     name: 'Range',
-    //     url: '/forms/range'
-    //   },
-    //   {
-    //     name: 'Input Group',
-    //     url: '/forms/input-group'
-    //   },
-    //   {
-    //     name: 'Floating Labels',
-    //     url: '/forms/floating-labels'
-    //   },
-    //   {
-    //     name: 'Layout',
-    //     url: '/forms/layout'
-    //   },
-    //   {
-    //     name: 'Validation',
-    //     url: '/forms/validation'
-    //   }
-    // ]
   },
   {
     name: 'Accounts',
-    url: '/charts',
+    url: '/accounts',
     iconComponent: { name: 'cil-home' },
   },
   // {

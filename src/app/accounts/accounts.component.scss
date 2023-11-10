@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ng-star-inserted {
+  display: flex;
+  flex-direction: column;
+}
+a.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base {
+  color: white;
+  background-color: #321fdb;
+  border-radius: 25px;
+}
