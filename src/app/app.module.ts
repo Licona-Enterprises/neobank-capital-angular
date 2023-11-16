@@ -62,6 +62,8 @@ import { WireDrawdownsComponent } from './wire-drawdowns/wire-drawdowns.componen
 import { CardsComponent } from './cards/cards.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { CapitalsComponent } from './capitals/capitals.component';
+import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
+import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -70,7 +72,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent],
   imports: [
     MatSelectModule,
     MatFormFieldModule,

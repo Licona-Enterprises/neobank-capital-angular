@@ -1,6 +1,7 @@
 <div class="d-flex">
   <h1 class="px-3">Accounts</h1>
-  <a mat-button (click)="toggleForm()">Transfer Funds</a>
+  <!-- <a mat-button (click)="toggleForm()">Transfer Funds</a> -->
+ <a mat-button [routerLink]="['/send-money-transfer-funds']">Transfer Funds</a>
   <!-- <a mat-button (click)="openForm()">Transfer Funds</a> -->
 </div>
 <mat-tab-group>

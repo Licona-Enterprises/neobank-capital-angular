@@ -5,7 +5,6 @@ import { AddReceiveFundsComponent } from './add-receive-funds/add-receive-funds.
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { TransferFundsComponent } from './transfer-funds/transfer-funds.component';
 import { PaymentsComponent } from './payments/payments.component';
-
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
@@ -19,6 +18,8 @@ import { WireDrawdownsComponent } from './wire-drawdowns/wire-drawdowns.componen
 import { CardsComponent } from './cards/cards.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { CapitalsComponent } from './capitals/capitals.component';
+import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
+import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
 
 const routes: Routes = [
   {
@@ -47,35 +48,35 @@ const routes: Routes = [
       },
       {
         path: 'transactions',
-        component: TransactionsComponent, // Add this line
+        component: TransactionsComponent,
         data: {
           title: 'Transactions',
         },
       },
       {
         path: 'requests',
-        component: RequestsComponent, // Add this line
+        component: RequestsComponent,
         data: {
           title: 'Requests',
         },
       },
       {
         path: 'recipients',
-        component: RecipientsComponent, // Add this line
+        component: RecipientsComponent,
         data: {
           title: 'Recipients',
         },
       },
       {
         path: 'wire-drawdowns',
-        component: WireDrawdownsComponent, // Add this line
+        component: WireDrawdownsComponent,
         data: {
           title: 'Wire Drawdowns',
         },
       },
       {
         path: 'capitals',
-        component: CapitalsComponent, // Add this line
+        component: CapitalsComponent,
         data: {
           title: 'Capitals',
         },
@@ -101,6 +102,14 @@ const routes: Routes = [
         data: {
           title: 'Accounts',
         },
+      },
+      {
+        path: 'send-money-transfer-funds',
+        component: SendMoneyTransferFundsComponent,
+      },
+      {
+        path: 'fund-transfer-reviews',
+        component:FundTransferReviewsComponent,
       },
       {
         path: 'theme',

@@ -10,7 +10,7 @@ describe('AccountsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AccountsComponent]
     });
-    fixture = TestBed.createComponent(Component);
+    fixture = TestBed.createComponent(AccountsComponent); // Fix: Use AccountsComponent here
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

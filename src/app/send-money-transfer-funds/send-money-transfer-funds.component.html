@@ -1,0 +1,36 @@
+<h2>Transfer Funds Available Here</h2>
+<mat-card-content class="custom-card-content">
+  <div class="content-container">
+    <mat-form-field>
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <h5 class="mb-0 fw-bold">Transfer From:</h5>
+    <mat-form-field>
+      <mat-label>Select an account</mat-label>
+      <mat-select>
+        <mat-option value="one">Account Details</mat-option>
+        <mat-option value="two">Account Details</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <h5 class="mb-0 fw-bold">Transfer To:</h5>
+    <mat-form-field>
+      <mat-label>Select an account</mat-label>
+      <mat-select>
+        <mat-option value="one">Account Details</mat-option>
+        <mat-option value="two">Account Details</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Textarea</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <div class="d-flex">
+      <a mat-button [routerLink]="['/dashboard']" class="custom-accounts-btn mx-2">Go Back</a>
+      <a mat-button [routerLink]="['/fund-transfer-reviews']" class="custom-accounts-btn">Next</a>
+      <!-- <a mat-button [routerLink]="'/dashboard'" target="_blank" class="custom-filter-button">Go Back</a>
+      <a mat-button href="https://www.google.com/" target="_blank" class="custom-filter-button">Next</a> -->
+    </div>
+  </div>
+</mat-card-content>
+
