@@ -11,7 +11,7 @@
         <mat-label>Input</mat-label>
         <input matInput>
       </mat-form-field>
-      <h5 class="mb-0">Transfer From:</h5>
+      <h5 class="mb-0 fw-bold">Transfer From:</h5>
       <mat-form-field>
         <mat-label>Select an account</mat-label>
         <mat-select>
@@ -19,7 +19,7 @@
           <mat-option value="two">Account Details</mat-option>
         </mat-select>
       </mat-form-field>
-      <h5 class="mb-0">Transfer To:</h5>
+      <h5 class="mb-0 fw-bold">Transfer To:</h5>
       <mat-form-field>
         <mat-label>Select an account</mat-label>
         <mat-select>
@@ -27,17 +27,20 @@
           <mat-option value="two">Account Details</mat-option>
         </mat-select>
       </mat-form-field>
+      <h5 class="mb-0 fw-bold">Message</h5>
       <mat-form-field>
         <mat-label>Textarea</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>
     </div>
   </mat-card-content> </mat-tab>
-  <mat-tab label="Linked Accounts">  <div class="table-reponsive w-100">
+  <mat-tab label="Linked Accounts">
+    <div class="table-reponsive w-100">
     <table class="table">
       <thead>
         <tr>
           <th>Date</th>
+          <th>To/From</th>
           <th>To/From</th>
           <th>Amount</th>
           <th>Account</th>
@@ -121,7 +124,6 @@
   <mat-tab label="Auto Transfer Rules"> Content 3 </mat-tab>
 </mat-tab-group>
 <!-- accounts.component.html -->
-
 <mat-card *ngIf="showForm">
   <mat-card-content>
     <div fxLayout="column" fxLayoutGap="20px">
