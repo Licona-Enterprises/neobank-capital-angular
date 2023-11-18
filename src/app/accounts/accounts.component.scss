@@ -12,3 +12,14 @@ a.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base {
   background-color: #321fdb;
   border-radius: 25px;
 }
+.table tbody tr td:first-child::before {
+  content: attr(data-date);
+  display: none;
+  // position: absolute;
+  // background-color: white;
+  padding: 5px;
+}
+
+.table tbody tr:hover td:first-child::before {
+  display: block;
+}

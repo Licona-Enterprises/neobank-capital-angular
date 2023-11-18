@@ -1,1 +1,47 @@
-<p>payment-request works!</p>
+<h2 class="text-center p-2 mt-3">Create a Payment Request</h2>
+<div class="center-container">
+  <div>
+    <h4 class="fw-bold">Contact Details</h4>
+    <mat-card class="custom-card-width">
+      <mat-card-content>
+        <form class="example-form custom-paysomeone">
+          <mat-form-field class="w-100 px-2">
+            <mat-label></mat-label>
+            <input matInput placeholder="Add Recipient" value="">
+            <mat-divider></mat-divider>
+
+            <div class="d-flex">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="payment"></mat-icon>
+              <a mat-button href="https://www.google.com/" target="_blank">Add new Recipient</a>
+            </div>
+
+            <div class="d-flex">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="email"></mat-icon>
+              <a mat-button href="https://www.google.com/" target="_blank">Invite recipient</a>
+            </div>
+            <p>Send Payment Request to</p>
+            <mat-form-field>
+              <mat-label>Choose or create a contact</mat-label>
+              <select matNativeControl required>
+                <option value="volvo">Charles Bonito</option>
+                <option value="saab">Raymond Grace</option>
+                <option value="mercedes">Briginade Lisona</option>
+                <option value="audi">Charlie Rackson</option>
+              </select>
+            </mat-form-field>
+            <div class="d-flex">
+              <mat-form-field class="example-full-width">
+                <mat-label>First name</mat-label>
+                <input matInput>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.table tbody tr td:first-child::before {
+  content: attr(data-date);
+  display: none;
+  padding: 5px;
+}
+
+.table tbody tr:hover td:first-child::before {
+  display: block;
+}

@@ -1,4 +1,6 @@
 import { INavData } from '@coreui/angular';
+import { MatIconModule } from '@angular/material/icon';
+
 
 export const navItems: INavData[] = [
   {
