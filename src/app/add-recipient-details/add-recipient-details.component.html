@@ -1,0 +1,87 @@
+<h2>Recipient Details</h2>
+<div class="center-container">
+  <div>
+    <mat-card class="custom-card-width">
+      <mat-card-content>
+        <form class="example-form custom-paysomeone">
+          <div>
+            <label>Profile: </label>
+            <mat-radio-group [formControl]="floatLabelControl">
+              <mat-radio-button value="auto">Person</mat-radio-button>
+              <mat-radio-button value="always">Business</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Legal Name</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Email</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Nickname</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <mat-divider></mat-divider>
+          <h4 class="fw-bold">Address</h4>
+          <div>
+            <h4 class="px-2 mb-0">Select Country</h4>
+            <mat-form-field class="px-2">
+              <select matNativeControl required>
+                <option value="payroll-two">United Kingdom</option>
+                <option value="payroll-one">India</option>
+                <option value="payroll-two">United States</option>
+                <option value="payroll-three">France</option>
+                <option value="payroll-four">Japan</option>
+              </select>
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Recipient Legal Address</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Appartment, Floor</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">City</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">State</h4>
+            <mat-form-field class="px-2">
+              <select matNativeControl required>
+                <option value="payroll-two">Alaska</option>
+                <option value="payroll-one">Calfornia</option>
+                <option value="payroll-two">Alabama</option>
+                <option value="payroll-three">Arizona</option>
+                <option value="payroll-four">Florida</option>
+              </select>
+            </mat-form-field>
+          </div>
+          <div>
+             <h4 class="px-2 mb-0">Postal/Zipcode</h4>
+            <mat-form-field class="example-full-width px-2">
+              <input matInput placeholder="" >
+            </mat-form-field>
+          </div>
+          <a mat-button [routerLink]="['/dashboard']" class="custom-accounts-btn mx-2">Go Back</a>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

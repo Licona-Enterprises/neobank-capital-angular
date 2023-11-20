@@ -20,6 +20,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { CapitalsComponent } from './capitals/capitals.component';
 import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
+import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
 
 const routes: Routes = [
   {
@@ -109,7 +110,11 @@ const routes: Routes = [
       },
       {
         path: 'fund-transfer-reviews',
-        component:FundTransferReviewsComponent,
+        component: FundTransferReviewsComponent,
+      },
+      {
+        path: 'add-recipient-details',
+        component: AddRecipientDetailsComponent,
       },
       {
         path: 'theme',
@@ -197,7 +202,6 @@ const routes: Routes = [
       scrollPositionRestoration: 'top',
       anchorScrolling: 'enabled',
       initialNavigation: 'enabledBlocking',
-      // relativeLinkResolution: 'legacy'
     }),
   ],
   exports: [RouterModule],

@@ -16,6 +16,9 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -65,6 +68,8 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { CapitalsComponent } from './capitals/capitals.component';
 import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -73,11 +78,15 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent],
   imports: [
+    MatRadioModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
     MatIconModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatNativeDateModule,
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
