@@ -2,10 +2,10 @@
 <div class="center-container">
   <div>
     <mat-card class="custom-card-width">
-      <h2 class="p-2">Wire Transfer</h2>
-      <h6 class="p-2">Arrives in 1-2 business days.</h6>
+      <h2 class="px-2 mt-2 mb-0">Wire Transfer</h2>
+      <h5 class="px-2">Arrives in 1-2 business days.</h5>
       <div>
-        <h4 class="p-2">Receiving account</h4>
+        <h4 class="px-2 mb-0">Receiving account</h4>
         <mat-form-field class="w-100 px-2">
           <select matNativeControl required>
             <option value="payroll-two">Ops/ Payroll $2,023,267.12/Checking ••1038</option>
@@ -18,19 +18,23 @@
       </div>
       <div>
         <form class="example-form">
-          <div class="d-flex">
-            <mat-form-field class="example-full-width p-2">
-              <mat-label>Routing number</mat-label>
+          <div>
+            <h4 class="px-2 mb-0">Routing number</h4>
+            <mat-form-field class="example-full-width px-2 w-100">
               <input matInput placeholder="132456789" >
             </mat-form-field>
-            <mat-form-field class="example-full-width p-2">
-              <mat-label>Account number</mat-label>
-              <input matInput placeholder="••••••••9102" >
-            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="px-2 mb-0">Account number</h4>
+            <div class="d-flex">
+              <mat-form-field class="example-full-width px-2 w-100">
+                <input matInput placeholder="••••••••9102" >
+              </mat-form-field>
+            </div>
           </div>
       </form>
     </div>
-    <div class="p-2">
+    <div class="px-2">
       <a mat-button href="https://www.google.com/" target="_blank" class="custom-wire">Wire Instructions</a>
     </div>
     </mat-card>
