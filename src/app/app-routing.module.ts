@@ -21,6 +21,7 @@ import { CapitalsComponent } from './capitals/capitals.component';
 import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
 import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
+import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-details/wiredrwdowns-recipient-details.component';
 
 const routes: Routes = [
   {
@@ -115,6 +116,10 @@ const routes: Routes = [
       {
         path: 'add-recipient-details',
         component: AddRecipientDetailsComponent,
+      },
+      {
+        path: 'wiredrwdowns-recipient-details',
+        component: WiredrwdownsRecipientDetailsComponent,
       },
       {
         path: 'theme',

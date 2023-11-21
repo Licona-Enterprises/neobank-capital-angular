@@ -70,6 +70,7 @@ import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/sen
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
+import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-details/wiredrwdowns-recipient-details.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -78,7 +79,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent, WiredrwdownsRecipientDetailsComponent],
   imports: [
     MatRadioModule,
     MatCheckboxModule,
