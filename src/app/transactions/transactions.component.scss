@@ -25,7 +25,6 @@ td {
 .table tbody tr td:first-child::before {
   content: attr(data-date);
   display: none;
-  // position: absolute;
   background-color: white;
   padding: 5px;
 }

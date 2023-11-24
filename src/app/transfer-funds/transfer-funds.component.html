@@ -1,1 +1,44 @@
-<p>transfer-funds works!</p>
+<h2 class="text-center px-4 mt-3">Transfer between your accounts</h2>
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100vh;" class="center-container">
+  <div class="card-container">
+    <mat-card>
+      <mat-card-content>Simple card</mat-card-content>
+      <mat-card-content class="custom-card-content">
+        <div class="content-container">
+          <mat-form-field>
+            <mat-label class="mt-2">Input</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <h5 class="mb-0 fw-bold">Transfer From:</h5>
+          <mat-form-field>
+            <mat-label>Select an account</mat-label>
+            <mat-select>
+              <mat-option value="one">Account Details</mat-option>
+              <mat-option value="two">Account Details</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h5 class="mb-0 fw-bold">Transfer To:</h5>
+          <mat-form-field>
+            <mat-label>Select an account</mat-label>
+            <mat-select>
+              <mat-option value="one">Account Details</mat-option>
+              <mat-option value="two">Account Details</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h5 class="mb-0 fw-bold">Message</h5>
+          <mat-form-field>
+            <mat-label>Textarea</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <div class="d-flex">
+            <a mat-button [routerLink]="['/dashboard']" class="custom-accounts-btn mx-2">Go Back</a>
+            <a mat-button [routerLink]="['/fund-transfer-reviews']" class="custom-accounts-btn">Next</a>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+

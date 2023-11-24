@@ -1,0 +1,27 @@
+.custom-card-content {
+  background-color: white !important;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  width:50% ;
+}
+.custom-accounts-btn {
+    background-color: #321fdb !important;
+    border-radius: 25px !important;
+    color: white !important;
+    padding: 8px 32px !important;
+    margin-bottom: 16px !important;
+    -webkit-border-radius: 25px !important;
+    -moz-border-radius: 25px !important;
+    -ms-border-radius: 25px !important;
+    -o-border-radius: 25px !important;
+}
+.card-container {
+  max-width: 400px;
+  width: 100%;
+}
+.center-container {
+  height: 100vh;
+}

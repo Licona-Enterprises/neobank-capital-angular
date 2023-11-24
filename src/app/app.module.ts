@@ -19,16 +19,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-
-// Import routing module
 import { AppRoutingModule } from './app-routing.module';
-
-// Import app component
 import { AppComponent } from './app.component';
-
-// Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
-
 import {
   AvatarModule,
   BadgeModule,
@@ -49,7 +42,6 @@ import {
   TabsModule,
   UtilitiesModule
 } from '@coreui/angular';
-
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MyModalComponent } from './my-modal/my-modal.component';
@@ -59,7 +51,7 @@ import { AddReceiveFundsComponent } from './add-receive-funds/add-receive-funds.
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { TransferFundsComponent } from './transfer-funds/transfer-funds.component';
 import { PaymentsComponent } from './payments/payments.component';
-import {TransactionsComponent} from "./transactions/transactions.component";
+import { TransactionsComponent } from "./transactions/transactions.component";
 import { RequestsComponent } from './requests/requests.component';
 import { RecipientsComponent } from './recipients/recipients.component';
 import { WireDrawdownsComponent } from './wire-drawdowns/wire-drawdowns.component';
@@ -68,10 +60,10 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { CapitalsComponent } from './capitals/capitals.component';
 import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/send-money-transfer-funds.component';
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
 import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-details/wiredrwdowns-recipient-details.component';
-
+import { PaysomeoneUserDetailsComponent } from './paysomeone-user-details/paysomeone-user-details.component';
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -79,7 +71,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent, WiredrwdownsRecipientDetailsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent, WiredrwdownsRecipientDetailsComponent, PaysomeoneUserDetailsComponent],
   imports: [
     MatRadioModule,
     MatCheckboxModule,
@@ -121,6 +113,7 @@ const APP_CONTAINERS = [
     ProgressModule,
     BadgeModule,
     CardModule,
+    ReactiveFormsModule,
     NgScrollbarModule
   ],
   providers: [

@@ -1,7 +1,5 @@
 import { INavData } from '@coreui/angular';
 import { MatIconModule } from '@angular/material/icon';
-
-
 export const navItems: INavData[] = [
   {
     name: 'Home',
@@ -16,7 +14,7 @@ export const navItems: INavData[] = [
   {
     name: 'Payments',
     url: '/payments',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cil-CreditCard' },
     children: [
       {
         name: 'Requests',
@@ -35,16 +33,16 @@ export const navItems: INavData[] = [
   {
     name: 'Cards',
     url: '/cards',
-    iconComponent: { name: 'cil-cursor' },
+    iconComponent: { name: 'cil-CreditCard' },
   },
   {
     name: 'Capital',
     url: '/capitals',
-    iconComponent: { name: 'cil-notes' },
+    iconComponent: { name: 'cil-CreditCard'},
   },
   {
     name: 'Accounts',
     url: '/accounts',
-    iconComponent: { name: 'cil-home' },
+    iconComponent: { name: 'cil-user' },
   },
 ];

@@ -1,4 +1,3 @@
-<!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
   <c-container [fluid]="true">
     <button
@@ -27,7 +26,6 @@
         </a>
       </c-nav-item>
     </c-header-nav>
-
     <c-header-nav class="d-none d-lg-flex">
       <c-nav-item>
         <a routerLink="./" cNavLink>
@@ -48,15 +46,12 @@
     <c-header-nav class="ms-3">
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
     </c-header-nav>
-
   </c-container>
   <c-header-divider></c-header-divider>
   <c-container [fluid]="true">
     <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
   </c-container>
 </ng-container>
-<!--</c-header>-->
-
 <ng-template #userDropdown>
   <c-dropdown alignment="end" variant="nav-item">
     <button

@@ -22,7 +22,6 @@
           icons to better communicate feedback.
         </p>
         <app-docs-example href="forms/validation">
-
           <form #customStylesForm="ngForm"
                 (ngSubmit)="onSubmit1()"
                 [validated]="customStylesValidated"
@@ -107,7 +106,6 @@
           feedback text through JavaScript.
         </p>
         <app-docs-example href="forms/validation#browser-defaults">
-
           <form #browserDefaultsForm="ngForm"
                 (ngSubmit)="onSubmit2()"
                 [validated]="browserDefaultsValidated"
@@ -146,7 +144,7 @@
             <c-col md="3">
               <label cLabel for="validationDefault04">State</label>
               <select cSelect id="validationDefault04" required>
-                <option value="">Choose...</option>
+                <option value="">Choose</option>
                 <option>...</option>
               </select>
               <c-form-feedback [valid]="false">Please provide a valid State.</c-form-feedback>
@@ -189,7 +187,7 @@
         </p>
         <p class="text-medium-emphasis small">
           For invalid fields, ensure that the invalid feedback/error message is associated with
-          the relevant form field using <code>aria-describedby</code> (noting that this
+          the relevant form field using <code>aria-described by</code> (noting that this
           attribute allows more than one <code>id</code> to be referenced, in case the field
           already points to additional form text).
         </p>
@@ -305,19 +303,15 @@
               <label cFormCheckLabel for="validationFormCheck1">Check this checkbox</label>
             </c-form-check>
             <c-form-feedback [valid]="false">Example invalid feedback text</c-form-feedback>
-
             <c-form-check>
               <input cFormCheckInput id="validationFormCheck2" name="radio-stacked" required type="radio" />
               <label cFormCheckLabel for="validationFormCheck2">Check this radio</label>
             </c-form-check>
-
             <c-form-check class="mb-3">
               <input cFormCheckInput id="validationFormCheck3" name="radio-stacked" required type="radio" />
               <label cFormCheckLabel for="validationFormCheck3">Check this radio</label>
             </c-form-check>
-
             <c-form-feedback [valid]="false">More example invalid feedback text</c-form-feedback>
-
             <div class="mb-3">
               <select aria-label="select example" cSelect required>
                 <option value="">Open this select menu</option>
@@ -327,7 +321,6 @@
               </select>
               <c-form-feedback [valid]="false">Example invalid select feedback</c-form-feedback>
             </div>
-
             <div class="mb-3">
               <input aria-label="file example"
                      cFormControl
@@ -337,7 +330,6 @@
               />
               <c-form-feedback [valid]="false">Example invalid form file feedback</c-form-feedback>
             </div>
-
             <div class="mb-3">
               <button cButton color="primary" disabled type="submit">
                 Submit form

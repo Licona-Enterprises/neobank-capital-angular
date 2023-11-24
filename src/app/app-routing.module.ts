@@ -22,7 +22,7 @@ import { SendMoneyTransferFundsComponent } from './send-money-transfer-funds/sen
 import { FundTransferReviewsComponent } from './fund-transfer-reviews/fund-transfer-reviews.component';
 import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
 import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-details/wiredrwdowns-recipient-details.component';
-
+import { PaysomeoneUserDetailsComponent } from './paysomeone-user-details/paysomeone-user-details.component';
 const routes: Routes = [
   {
     path: '',
@@ -122,6 +122,10 @@ const routes: Routes = [
         component: WiredrwdownsRecipientDetailsComponent,
       },
       {
+        path: 'paysomeone-user-details',
+        component: PaysomeoneUserDetailsComponent,
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule),
@@ -200,7 +204,6 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: 'dashboard' },
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
@@ -212,3 +215,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
