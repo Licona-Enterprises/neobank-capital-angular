@@ -14,19 +14,149 @@
     </div>
     <button class="btn btn-secondary custom-filter-button">No Filter</button>
   </div>
-  <mat-card *ngIf="isCardVisible" class="w-50">
-    <div class="d-flex">
+
+  <mat-card *ngIf="isCardVisible" class="w-75">
+    <div class="d-flex mt-2">
       <h4 class="px-3 py-2"> My Transactions</h4><mat-slide-toggle class="py-2"></mat-slide-toggle>
     </div>
-    <mat-divider></mat-divider>
-    <mat-list role="list">
+
+
+
+
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms" class="mat-tab-body-parent">
+
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">calendar_today</mat-icon> Date </ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">
+            <div class="content-body">
+              <div  class="content-body1 w-50">
+                <mat-form-field>
+                  <mat-label>Select</mat-label>
+                  <mat-select>
+                      <mat-option value="Last 30 days" >Last 30 days</mat-option>
+                      <mat-option value="Last month">Last month</mat-option>
+                      <mat-option value="Last quarter (Q3 2023)" >Last quarter (Q3 2023)</mat-option>
+                      <mat-option value="This quarter (Q4 2023)" >This quarter (Q4 2023)</mat-option>
+                      <mat-option value="2 quarters ago (Q2 2023)" >2 quarters ago (Q2 2023)</mat-option>
+                      <mat-option value="This year" >This year</mat-option>
+                      <mat-option value="All time" >All time</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div  class="content-body2">
+
+                <mat-form-field>
+                <mat-date-range-input
+                [formGroup]="campaignOne"
+                [rangePicker]="campaignOnePicker"
+                [comparisonStart]="campaignTwo.value.start"
+                [comparisonEnd]="campaignTwo.value.end">
+                <input matStartDate placeholder="Start date" formControlName="start">
+                <input matEndDate placeholder="End date" formControlName="end">
+              </mat-date-range-input>
+              <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #campaignOnePicker ></mat-date-range-picker>
+             </mat-form-field>
+            </div>
+            </div>
+
+
+          </div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">search</mat-icon> Keyword</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">
+            <div class="content-body">
+              <div  class="content-body1 w-80">
+                <mat-form-field appearance="fill">
+                  <mat-label>Search Here</mat-label>
+                  <input type="text" matInput placeholder="Type something..">
+                  <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+                </div>
+                <div  class="content-body2">
+                  <section  class="cb-wrapper ms-4" >
+                    <mat-checkbox class="example-margin">Jason Green</mat-checkbox>
+                    <mat-checkbox class="example-margin">Lighthouse Properties</mat-checkbox>
+                    <mat-checkbox class="example-margin">Domestic Ads</mat-checkbox>
+                    <mat-checkbox class="example-margin">liyah McMahon</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">liyah McMahon</mat-checkbox>
+                    <mat-checkbox class="example-margin">Jordi O'Donnell</mat-checkbox>
+                  </section>
+                </div>
+                </div>
+
+
+        </div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">last_page</mat-icon> Amount</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">
+            <div class="content-body">
+              <div  class="content-body1 Amount">
+                <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button value="1">Any</mat-radio-button>
+                  <mat-radio-button value="2"> In (e.g. deposits, refunds)</mat-radio-button>
+                  <mat-radio-button value="3">Out (e.g. purchases, charges)</mat-radio-button>
+                </mat-radio-group>
+                </div>
+                <div  class="content-body2">
+                  <mat-form-field class="">
+                    <mat-label>Specific amount</mat-label>
+                    <input #inputID matInput placeholder="0.00">
+                    <mat-icon matPrefix> = attach_money</mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="">
+                    <mat-label>At least...</mat-label>
+                    <input #inputID matInput placeholder="0.00">
+                    <mat-icon matPrefix> ≥ attach_money</mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="">
+                    <mat-label>No more than...</mat-label>
+                    <input #inputID matInput placeholder="0.00">
+                    <mat-icon matPrefix> ≤ attach_money</mat-icon>
+                  </mat-form-field>
+                </div>
+
+
+            </div>
+           </div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_money</mat-icon> Method</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">Content 6</div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">account_balance</mat-icon> Accounts</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">Content 7</div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_file</mat-icon> Attachment</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">Status</div>
+      </mat-tab>
+      <mat-tab>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">credit_card</mat-icon> Card</ng-template>
+          <mat-divider></mat-divider>
+          <div class="mat-tab-body-content">Card</div>
+      </mat-tab>
+  </mat-tab-group>
+    <!-- <mat-list role="list">
       <mat-list-item role="listitem">Date</mat-list-item>
       <mat-list-item role="listitem">Keyword</mat-list-item>
       <mat-list-item role="listitem">Amount</mat-list-item>
       <mat-list-item role="listitem">Method</mat-list-item>
       <mat-list-item role="listitem">Accounts</mat-list-item>
-    </mat-list>
+    </mat-list> -->
   </mat-card>
+
   <div class="table-reponsive">
     <table class="table">
       <thead>

@@ -15,7 +15,8 @@ td {
 }
 .mat-tab-labels,
 .mat-tab-body-wrapper {
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .vertical-layout {
@@ -32,3 +33,50 @@ td {
 .table tbody tr:hover td:first-child::before {
   display: block;
 }
+::ng-deep mat-tab-header {
+  align-self: center;
+}
+.mat-tab-body-content{
+  padding: 10px 50px;
+}
+
+mat-tab-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+mat-tab-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.content-body {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+// .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+//   margin-left: 16px;
+// }
+.cb-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  flex-flow: column;
+}
+
+.mat-checkbox {
+  margin-left:20px;
+}
+
+.cb-vertival {
+  flex-flow: column;
+}
+.mat-icon{
+  font-size: 16px;color: rgba(0, 0, 0, 0.6);
+}
+
+.mat-tab-body-parent{
+  display: flex;
+}
+
