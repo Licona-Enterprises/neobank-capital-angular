@@ -64,6 +64,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddRecipientDetailsComponent } from './add-recipient-details/add-recipient-details.component';
 import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-details/wiredrwdowns-recipient-details.component';
 import { PaysomeoneUserDetailsComponent } from './paysomeone-user-details/paysomeone-user-details.component';
+import { FormsModule } from '@angular/forms';
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -114,7 +115,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     CardModule,
     ReactiveFormsModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    FormsModule,
   ],
   providers: [
     {

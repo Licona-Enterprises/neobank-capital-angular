@@ -5,7 +5,7 @@
       <a class="btn btn-secondary dropdown-toggle custom-filter-button mx-1"
          href="#" role="button" data-bs-toggle="dropdown"
          aria-expanded="false" style="color:white;
-        background-color: #321fdb;
+        background-color: #3c4b64;
         border-radius: 25px;
         padding: 8px 32px;"
         (click)="toggleCardVisibility()">
@@ -34,6 +34,7 @@
                 <mat-form-field>
                   <mat-label>Select</mat-label>
                   <mat-select>
+                      <mat-option value="custom" >Custom</mat-option>
                       <mat-option value="Last 30 days" >Last 30 days</mat-option>
                       <mat-option value="Last month">Last month</mat-option>
                       <mat-option value="Last quarter (Q3 2023)" >Last quarter (Q3 2023)</mat-option>
@@ -122,39 +123,90 @@
                     <mat-icon matPrefix> ≤ attach_money</mat-icon>
                   </mat-form-field>
                 </div>
-
-
             </div>
            </div>
       </mat-tab>
       <mat-tab>
           <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_money</mat-icon> Method</ng-template>
           <mat-divider></mat-divider>
-          <div class="mat-tab-body-content">Content 6</div>
+          <div class="mat-tab-body-content">
+            <section class="example-section">
+              <span class="example-list-section">
+                <mat-checkbox class="example-margin"
+                              [checked]="allComplete"
+                              [color]="task.color"
+                              [indeterminate]="someComplete()"
+                              (change)="setAll($event.checked)">
+                  {{task.name}}
+                </mat-checkbox>
+              </span>
+              <span class="example-list-section">
+                <ul>
+                  <li *ngFor="let subtask of task.subtasks">
+                    <mat-checkbox [(ngModel)]="subtask.completed"
+                                  [color]="subtask.color"
+                                  (ngModelChange)="updateAllComplete()">
+                      {{subtask.name}}
+                    </mat-checkbox>
+                  </li>
+                </ul>
+              </span>
+            </section>
+          </div>
       </mat-tab>
       <mat-tab>
           <ng-template mat-tab-label><mat-icon class="me-1 mt-2">account_balance</mat-icon> Accounts</ng-template>
           <mat-divider></mat-divider>
-          <div class="mat-tab-body-content">Content 7</div>
+          <div class="mat-tab-body-content">
+            <div class="content-body">
+              <div  class="content-body1 accounts">
+                <label class="btn btn-filter">
+                  <input type="checkbox" name="allTrades" [value]="trade" (change)="allTrades($event)">Select All
+                </label>
+                <ng-container *ngFor="let trd of trade">
+                  <label class="btn btn-filter">
+                    <input type="checkbox" name="trades" [checked]="trd.selected" (change)="changeTradesByCategory($event)">{{ trd.label }}
+                  </label>
+                </ng-container>
+              </div>
+            </div>
+        </div>
       </mat-tab>
       <mat-tab>
-          <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_file</mat-icon> Attachment</ng-template>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_file</mat-icon> Status</ng-template>
           <mat-divider></mat-divider>
-          <div class="mat-tab-body-content">Status</div>
+          <div class="mat-tab-body-content">
+            <div  class="content-body2">
+              <section  class="cb-wrapper ms-4" >
+                <mat-checkbox class="example-margin">Posted</mat-checkbox>
+                <span id="Posted_filter_checkbox" class="styles__checkboxInfoText__xgrR">Money was successfully transferred.</span>
+                <mat-checkbox class="example-margin">Pending</mat-checkbox>
+                <span id="Posted_filter_checkbox" class="styles__checkboxInfoText__xgrR">A transfer has been initiated, and a hold may be placed on your account, but it has not completed.</span>
+                <mat-checkbox class="example-margin">Failed</mat-checkbox>
+                <span id="Posted_filter_checkbox" class="styles__checkboxInfoText__xgrR">No money was transferred.</span>
+                <mat-checkbox class="example-margin">Canceled</mat-checkbox>
+                <span id="Posted_filter_checkbox" class="styles__checkboxInfoText__xgrR">Transaction was stopped by you, a teammate, or Mercury employee before money was transferred..</span>
+              </section>
+            </div>
+
+          </div>
       </mat-tab>
       <mat-tab>
-          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">credit_card</mat-icon> Card</ng-template>
+          <ng-template mat-tab-label><mat-icon class="me-1 mt-2">credit_card</mat-icon> Attachments</ng-template>
           <mat-divider></mat-divider>
-          <div class="mat-tab-body-content">Card</div>
+          <div class="mat-tab-body-content">
+            <div class="content-body">
+              <div  class="content-body1 Attachments">
+                <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button value="1">All</mat-radio-button>
+                  <mat-radio-button value="2">Has attachment</mat-radio-button>
+                  <mat-radio-button value="3">No attachment</mat-radio-button>
+                </mat-radio-group>
+                </div>
+              </div>
+          </div>
       </mat-tab>
   </mat-tab-group>
-    <!-- <mat-list role="list">
-      <mat-list-item role="listitem">Date</mat-list-item>
-      <mat-list-item role="listitem">Keyword</mat-list-item>
-      <mat-list-item role="listitem">Amount</mat-list-item>
-      <mat-list-item role="listitem">Method</mat-list-item>
-      <mat-list-item role="listitem">Accounts</mat-list-item>
-    </mat-list> -->
   </mat-card>
 
   <div class="table-reponsive">
@@ -250,5 +302,3 @@
     </table>
   </div>
 </div>
-
-
