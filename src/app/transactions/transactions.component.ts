@@ -3,25 +3,26 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MyModalComponent } from '../my-modal/my-modal.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import {MatTabsModule} from '@angular/material/tabs';
-// import {MatDatepickerModule} from '@angular/material/datepicker';
-// Import Angular Material modules
 import { NgModule } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
-
-
 
 const today = new Date();
 const month = today.getMonth();
 const year = today.getFullYear();
 
-
-export interface Task {
+export interface TaskSet  {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks?: Task[];
+  subtasks?: TaskSet[];
+  allComplete?: boolean;
 }
+
+// export interface Task {
+//   name: string;
+//   completed: boolean;
+//   color: ThemePalette;
+// }
 
 @Component({
   selector: 'app-transactions',
@@ -31,7 +32,6 @@ export interface Task {
 })
 
 export class TransactionsComponent {
-
   @NgModule({
     imports: [
          FormsModule
@@ -49,6 +49,8 @@ export class TransactionsComponent {
     start: new FormControl(new Date(year, month, 15)),
     end: new FormControl(new Date(year, month, 19)),
   });
+
+
 
   isTrade: boolean = false
   checkAllTrades: boolean = false
@@ -77,39 +79,96 @@ export class TransactionsComponent {
     this.trade.forEach(item => (item.selected = checked));
   }
 
+  // Method
 
-  task: Task = {
-    name: 'ACH',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      {name: 'Mercury Payment', completed: false, color: 'primary'},
-      {name: 'Mercury Transfer', completed: false, color: 'accent'},
-      {name: 'ACH In', completed: false, color: 'warn'},
-      {name: 'ACH Pull', completed: false, color: 'warn'}
-    ]
-  };
+  taskSets: TaskSet[] = [
+    {
+      name: 'ACH',
+      completed: false,
+      color: 'primary',
+      subtasks: [
+        {name: 'Mercury Payment', completed: false, color: 'primary'},
+        {name: 'Mercury Transfer', completed: false, color: 'accent'},
+        {name: 'ACH In', completed: false, color: 'warn'},
+        {name: 'ACH Pull', completed: false, color: 'warn'}
+      ]
+    },
+    {
+      name: 'Wire',
+      completed: false,
+      color: 'primary',
+      subtasks: [
+        {name: 'Wire In', completed: false, color: 'primary'},
+        {name: 'Wire Out(International)', completed: false, color: 'accent'},
+        {name: 'Wire Out(Domestic)', completed: false, color: 'warn'},
+      ]
+    },
+    {
+      name: 'Card',
+      completed: false,
+      color: 'primary',
+      subtasks: [
+        {name: 'Debit Card', completed: false, color: 'primary'},
+        {name: 'Credit Card', completed: false, color: 'accent'},
+        {name: 'Credit Account Payment', completed: false, color: 'warn'},
+        {name: 'Credit Cashback Deposit', completed: false, color: 'warn'},
+      ]
+    },
+    {
+      name: 'Check',
+      completed: false,
+      color: 'primary',
+      subtasks: [
+        {name: 'Check Payment', completed: false, color: 'primary'},
+        {name: 'Check Deposit', completed: false, color: 'accent'},
+      ]
+    },
+    {
+      name: 'Treasury Transfer',
+      completed: false,
+      color: 'primary',
+    },
+    {
+      name: 'Venture Debt Transfer',
+      completed: false,
+      color: 'primary',
+    },
+    {
+      name: 'Payment Request',
+      completed: false,
+      color: 'primary',
+    },
+     {
+      name: 'Capital Growth',
+      completed: false,
+      color: 'primary',
+    },
+  ]
 
-  allComplete: boolean = false;
-
-
-  updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
-  }
-
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
-      return false;
+    allComplete: boolean = false;
+    updateAllComplete(taskSet:TaskSet) {
+      taskSet.allComplete = taskSet.subtasks != null && taskSet.subtasks.every(t => t.completed);
     }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
-
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.task.subtasks == null) {
-      return;
+    someComplete(taskSet: TaskSet): boolean {
+      if (taskSet.subtasks == null) {
+        return false;
+      }
+      return taskSet.subtasks.filter(t => t.completed).length > 0 && !taskSet.allComplete;
     }
-    this.task.subtasks.forEach(t => t.completed = completed);
-  }
+    setAll(taskSet: TaskSet, completed: boolean) {
+      taskSet.allComplete = completed;
+      if (taskSet.subtasks == null) {
+        return;
+      }
+      taskSet.subtasks.forEach(t => t.completed = completed);
+    }
+    public transaction: Array<any> = [
+      { date: "Nov1", to: "Deposit from Client A", amount:"$7,500.00", Account:"Checking",Payment:"Wire Transfer"},
+      { date: "Nov4", to: "Deposit from Client B", amount:"$7,500.00", Account:"Checking",Payment:"Wire Transfer"},
+      { date: "Nov6", to: "Deposit from Client A", amount:"$8,500.00", Account:"Checking",Payment:"Wire Transfer"},
+      { date: "Nov8", to: "Payment from Client B", amount:"$5,500.00", Account:"Savings",Payment:"Wire Transfer"},
+      { date: "Nov8", to: "Payment from Client B", amount:"$5,500.00", Account:"Savings",Payment:"Wire Transfer"},
+      { date: "Nov8", to: "Transfer from Account X", amount:"$5,500.00", Account:"Checking",Payment:"Wire Transfer"},
+    ];
 
 }

@@ -12,16 +12,13 @@
         Add Filter
       </a>
     </div>
-    <button class="btn btn-secondary custom-filter-button">No Filter</button>
+    <button class="btn btn-secondary custom-filter-button">No Filter Applied</button>
   </div>
 
   <mat-card *ngIf="isCardVisible" class="w-75">
     <div class="d-flex mt-2">
       <h4 class="px-3 py-2"> My Transactions</h4><mat-slide-toggle class="py-2"></mat-slide-toggle>
     </div>
-
-
-
 
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms" class="mat-tab-body-parent">
 
@@ -127,25 +124,82 @@
            </div>
       </mat-tab>
       <mat-tab>
+        <ng-template mat-tab-label><mat-icon class="me-1 mt-2">last_page</mat-icon> GL code</ng-template>
+        <mat-divider></mat-divider>
+        <div class="mat-tab-body-content">
+          <div class="content-body">
+            <div  class="content-body1 w-80">
+              <mat-form-field appearance="fill">
+                <mat-label>Search Here</mat-label>
+                <input type="text" matInput placeholder="Type something..">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+              </div>
+              <div  class="content-body2">
+                <section  class="cb-wrapper ms-4" >
+                  <mat-checkbox class="example-margin">120 - Accounts Receivable</mat-checkbox>
+                  <mat-checkbox class="example-margin">620 - Entertainment</mat-checkbox>
+                  <mat-checkbox class="example-margin">664 - Utilities</mat-checkbox>
+                  <mat-checkbox class="example-margin">668 - Wages and Salaries</mat-checkbox>
+                </section>
+              </div>
+          </div>
+         </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label><mat-icon class="me-1 mt-2">last_page</mat-icon> Cards</ng-template>
+      <mat-divider></mat-divider>
+      <div class="mat-tab-body-content">
+        <div class="content-body">
+            <div  class="content-body1 w-80 card-content">
+              <section  class="cb-wrapper ms-4" >
+                <label class="ms-3">Your Cards</label>
+                <mat-divider></mat-divider>
+                <mat-checkbox class="example-margin">Jane B. ••1234 </mat-checkbox>
+                <mat-checkbox class="example-margin">Jane B. ••1231</mat-checkbox>
+                <mat-checkbox class="example-margin">Jane B. ••1233</mat-checkbox>
+                <mat-checkbox class="example-margin">Jane B. ••1222</mat-checkbox>
+              </section>
+              <section  class="cb-wrapper ms-4" >
+                <label class="ms-3">Others Cards</label>
+                <mat-divider></mat-divider>
+                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
+                <mat-checkbox class="example-margin">Jessica A. ••9914</mat-checkbox>
+                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
+                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
+              </section>
+              <section  class="cb-wrapper ms-4" >
+                <label class="ms-3">Cancelled Cards</label>
+                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
+                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
+                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
+                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
+              </section>
+            </div>
+        </div>
+       </div>
+  </mat-tab>
+
+      <mat-tab>
           <ng-template mat-tab-label><mat-icon class="me-1 mt-2"> attach_money</mat-icon> Method</ng-template>
           <mat-divider></mat-divider>
-          <div class="mat-tab-body-content">
+          <div class="mat-tab-body-content" *ngFor="let taskSet of taskSets">
             <section class="example-section">
               <span class="example-list-section">
                 <mat-checkbox class="example-margin"
-                              [checked]="allComplete"
-                              [color]="task.color"
-                              [indeterminate]="someComplete()"
-                              (change)="setAll($event.checked)">
-                  {{task.name}}
+                              [checked]="taskSet.allComplete"
+                              [color]="taskSet.color"
+                              [indeterminate]="someComplete(taskSet)"
+                              (change)="setAll(taskSet,$event.checked)">
+                  {{taskSet.name}}
                 </mat-checkbox>
               </span>
               <span class="example-list-section">
                 <ul>
-                  <li *ngFor="let subtask of task.subtasks">
+                  <li *ngFor="let subtask of taskSet.subtasks">
                     <mat-checkbox [(ngModel)]="subtask.completed"
                                   [color]="subtask.color"
-                                  (ngModelChange)="updateAllComplete()">
+                                  (ngModelChange)="updateAllComplete(taskSet)">
                       {{subtask.name}}
                     </mat-checkbox>
                   </li>
@@ -213,92 +267,20 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>To/From</th>
-          <th>Amount</th>
-          <th>Account</th>
-          <th>Payment Method</th>
+          <th>Title</th>
+          <th>Descrption</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Nov1</td>
-          <td>Deposit from Client A</td>
-          <td>$7,500.00</td>
-          <td>Checking</td>
-          <td>Wire Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov1"></td>
-          <td>Deposit from Client A</td>
-          <td>$7,500.00</td>
-          <td>Checking</td>
-          <td>Wire Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov7"></td>
-          <td>Transfer to Ops / Payroll</td>
-          <td>−$54,810.16</td>
-          <td>AR</td>
-          <td>Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov9"></td>
-          <td>Payment from Client B</td>
-          <td>$2,000.00</td>
-          <td>Savings</td>
-          <td>Check</td>
-        </tr>
-        <tr>
-          <td data-date="Nov10"></td>
-          <td>Withdrawal</td>
-          <td>−$1,000.00</td>
-          <td>Checking</td>
-          <td>ATM</td>
-        </tr>
-        <tr>
-          <td data-date="Nov11"></td>
-          <td>Transfer from Account X</td>
-          <td>$10,000.00</td>
-          <td>Checking</td>
-          <td>Wire Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov12"></td>
-          <td>Payment from Client C</td>
-          <td>$8,500.00</td>
-          <td>Savings</td>
-          <td>Credit Card</td>
-        </tr>
-        <tr>
-          <td data-date="Nov14"></td>
-          <td>Transfer to Ops / Payroll</td>
-          <td>−$54,810.16</td>
-          <td>AR</td>
-          <td>Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov16"></td>
-          <td>Payment from Client X</td>
-          <td>$5,000.00</td>
-          <td>Checking</td>
-          <td>Wire Transfer</td>
-        </tr>
-        <tr>
-          <td data-date="Nov18"></td>
-          <td>Withdrawal</td>
-          <td>−$500.00</td>
-          <td>Savings</td>
-          <td>Cash</td>
-        </tr>
-        <tr>
-          <td data-date="Nov20"></td>
-          <td>Transfer from Account Y</td>
-          <td>$6,200.00</td>
-          <td>Checking</td>
-          <td>Wire Transfer</td>
+        <tr  *ngFor="let transact of transaction">
+          <td>{{transact.date}}</td>
+          <td>{{transact.to}}</td>
+          <td>{{transact.amount}}</td>
+          <td>{{transact.Account}}</td>
+          <td>{{transact.Payment}}</td>
         </tr>
       </tbody>
     </table>
+
   </div>
 </div>
