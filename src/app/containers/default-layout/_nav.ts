@@ -22,13 +22,13 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Recipients',
-        url: '/recipients'
+        url: '/recipients',
       },
       {
         name: 'Wire Drawdowns',
-        url: '/wire-drawdowns'
+        url: '/wire-drawdowns',
       },
-    ]
+    ],
   },
   {
     name: 'Cards',
@@ -38,11 +38,33 @@ export const navItems: INavData[] = [
   {
     name: 'Capital',
     url: '/capitals',
-    iconComponent: { name: 'cil-CreditCard'},
+    iconComponent: { name: 'cil-CreditCard' },
   },
   {
     name: 'Accounts',
     url: '/accounts',
     iconComponent: { name: 'cil-user' },
+    children: [
+      {
+        name: 'Credit',
+        url: '/credit',
+      },
+      {
+        name: 'Treasury',
+        url: '/treasury',
+      },
+      {
+        name: 'Ops/Payroll',
+        url: '/ops-payroll',
+      },
+      {
+        name: 'AP',
+        url: '/ap',
+      },
+      {
+        name: 'AR',
+        url: '/ar',
+      },
+    ],
   },
 ];
