@@ -13,9 +13,13 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Payments',
-    url: '/payments',
+    url: '',
     iconComponent: { name: 'cil-CreditCard' },
     children: [
+      // {
+      //   name: 'Payments',
+      //   url: '/payments',
+      // },
       {
         name: 'Requests',
         url: '/requests',

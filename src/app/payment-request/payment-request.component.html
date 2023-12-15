@@ -1,87 +1,101 @@
-<h2 class="text-center px-4 mt-3">Create a Payment Request</h2>
+
 <div class="center-container">
   <div>
-    <form name="myForm" ng-submit="submitForm()">
-    <mat-card class="custom-card-width">
-      <h4 class="fw-bold mb-0 px-4 mt-3">Contact Details</h4>
-      <p class="px-4">Select an existing contact or create new account.</p>
-      <mat-card-content>
-        <div> 
-          <h4 class="px-2">Send payment request to</h4>
-          <mat-form-field class="px-2 w-100">
-            <select matNativeControl required >
-              <option value="payroll-two">Ops/ Payroll $2,023,267.12/Checking ••1038</option>
-              <option value="payroll-one">AP/Payroll $5,3755,86.12/Checking ••1238</option>
-              <option value="payroll-two">Ops/ Payroll $2,023,267.12/Checking ••1915</option>
-              <option value="payroll-three">AP/Payroll $5,3755,86.12/Checking ••1238</option>
-              <option value="payroll-four">Ops/ Payroll $2,023,267.12/Checking ••1426</option>
-            </select>
-          </mat-form-field>
-        </div>
-        <div>
-          <form class="example-form">
-            <h4 class="px-2 mb-0">Name</h4>
-            <div class="d-flex">
-              <mat-form-field class="example-full-width w-100">
-                <input matInput placeholder="John Doe"  required>
-              </mat-form-field>
-              </div>
+
+        <form [formGroup]="myForm"  (ngSubmit)="onSubmit()">
+          <div class="text-center px-5 mb-5 mt-5 create-payment-title">Create a Payment Request</div>
+            <h4 class="fw-bold">Contact Details</h4>
+            <p class="mb-4">Select an existing contact or create one by entering their name and email below.</p>
+
               <div>
-                <h4 class="px-2 mb-0">Email</h4>
-                <mat-form-field class="example-full-width px-2 w-100">
-                  <mat-label>Email</mat-label>
-                  <input matInput placeholder="example@gmail.com" required>
+                <span class="">Send payment request to</span>
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-select required formControlName="contact">
+                    <mat-option *ngFor="let option of paymentTooptions" [value]="option.value">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
-              <mat-divider></mat-divider>
-            <h4 class="fw-bold">Request Details</h4>
-            <h4 class="px-2 mb-0">Account</h4>
-            <div class="d-flex">
-              <mat-form-field class="example-full-width px-2 w-100">
-              <input matInput placeholder="89341245209517" required>
-            </mat-form-field>
+              <div>
+
+                <!-- <div class="d-flex">
+                  <div class="mr-3">
+
+                    <label class="mat-form-field-label">Name</label>
+                    <mat-form-field class="w-40 " appearance="outline">
+                      <input matInput placeholder="John Doe" class="pr-3" required>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <label class="mat-form-field-label">Email</label>
+                    <mat-form-field class="w-40 " appearance="outline">
+                      <input matInput placeholder="example@gmail.com" required>
+                    </mat-form-field>
+                  </div>
+                </div> -->
+
+                    <!-- <mat-divider></mat-divider> -->
+                  <h4 class="fw-bold">Request Details</h4>
+                  <span class="">Amount</span>
+                  <div class="d-flex">
+                    <mat-form-field class="w-100" appearance="outline">
+                    <input matInput placeholder="$ 0.00" formControlName="amount"  required>
+                  </mat-form-field>
+                  </div>
+                  <div>
+                    <span class="">Due Date</span>
+                    <mat-form-field class="w-100" appearance="outline">
+                      <input matInput [matDatepicker]="picker" formControlName="dueDate">
+                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                <div>
+                  <span class="">Company name to show on request </span>
+                  <mat-form-field class="w-100 " appearance="outline">
+                    <mat-select  required formControlName="company">
+                      <mat-option *ngFor="let option of nameOptions" [value]="option.value">
+                        {{ option.label }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <span class="">Destination Account</span>
+                  <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Select Account</mat-label>
+                    <mat-select  required formControlName="destinationAccount">
+                      <mat-option *ngFor="let option of destinAccountOptions" [value]="option.value">
+                        {{ option.label }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <span class="">Notes / attachments (optional)</span>
+                  <mat-form-field class="w-100" appearance="outline">
+                  <textarea matInput placeholder="Invoice #114, Payment for research project, etc." rows="3" cols="50"></textarea>
+                </mat-form-field>
+                </div>
+                <div>
+                  <span class="">Attachment:</span>
+               <mat-form-field class="w-100" appearance="outline">
+                      <input matInput placeholder="Choose a file" readonly>
+                      <mat-icon matSuffix>attach_file</mat-icon>
+                      <input  type="file" style="display: block;">
+                    </mat-form-field>
+                </div>
+
+
+                <div class="d-flex">
+                  <a mat-button [routerLink]="['/dashboard']" target="_blank" class="custom-wire">Go Back</a>
+                  <button class="custom-wire mx-2" type="submit">Submit</button>
+                </div>
+
             </div>
-            <div>
-              <h4 class="px-2 mb-0">Due Date</h4>
-              <mat-form-field class="example-full-width px-2 w-100">
-                <input matInput [matDatepicker]="picker" >
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-          <div>
-            <h4 class="px-2 mb-0">Company name to show on request </h4>
-            <mat-form-field class="w-100 px-2">
-              <select matNativeControl required>
-                <option value="payroll-two">Quebed Demo Inc.</option>
-                <option value="payroll-one">Neo Capital Bank.</option>
-                <option value="payroll-two">Quebed Demo Inc.</option>
-                <option value="payroll-three">Demo Quebed Inc.</option>
-              </select>
-            </mat-form-field>
-          </div>
-          <div>
-            <h4 class="px-2 mb-0">Destination Account</h4>
-            <mat-form-field class="w-100 px-2">
-              <mat-label>Select Account</mat-label>
-              <select matNativeControl required>
-                <option value="payroll-two">Ops/ Payroll $2,023,267.12/Checking ••1038</option>
-                <option value="payroll-one">AP/Payroll $5,3755,86.12/Checking ••1238</option>
-                <option value="payroll-two">Ops/ Payroll $2,023,267.12/Checking ••1915</option>
-                <option value="payroll-three">AP/Payroll $5,3755,86.12/Checking ••1238</option>
-                <option value="payroll-four">Ops/ Payroll $2,023,267.12/Checking ••1426</option>
-              </select>
-            </mat-form-field>
-          </div>
-          <div class="d-flex px-2">
-            <a mat-button [routerLink]="['/dashboard']" target="_blank" class="custom-wire">Go Back</a>
-            <!-- <a mat-button href="https://www.google.com/" target="_blank" class="custom-wire mx-2">Submit</a> -->
-            <button class="custom-wire mx-2" type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-      </mat-card-content>
-    </mat-card>
-    </form>
+
+          </form>
+
   </div>
 </div>

@@ -1,2 +1,26 @@
-<p>payments works!</p>
- 
+<div class="d-flex">
+  <h2>Requests</h2>
+  <a mat-button [routerLink]="['/payment-request']" target="_blank" class="custom-wire mx-2">Request Payment</a>
+</div>
+<div class="table-reponsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Created On</th>
+        <th>Contact</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Account</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let Request of Requests">
+        <td>{{Request.created}}</td>
+        <td>{{Request.Contact}}</td>
+        <td>{{Request.amount}}</td>
+        <td>{{Request.status}}</td>
+        <td>{{Request.account}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

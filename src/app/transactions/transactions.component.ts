@@ -1,14 +1,19 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MyModalComponent } from '../my-modal/my-modal.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Component, ViewEncapsulation,ViewChild } from '@angular/core';
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+// import { MyModalComponent } from '../my-modal/my-modal.component';
+// import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
+
 
 const today = new Date();
 const month = today.getMonth();
 const year = today.getFullYear();
+
 
 export interface TaskSet  {
   name: string;
@@ -18,12 +23,6 @@ export interface TaskSet  {
   allComplete?: boolean;
 }
 
-// export interface Task {
-//   name: string;
-//   completed: boolean;
-//   color: ThemePalette;
-// }
-
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -32,6 +31,38 @@ export interface TaskSet  {
 })
 
 export class TransactionsComponent {
+  hoveredColumn: string | null = null;
+  showDate: boolean = false;
+  displayedColumns: string[] = ['date', 'To', 'amount', 'Account', 'Payment Method','Attachment'];
+  dataSource = new MatTableDataSource<any>([
+    { date: 'Dec 15', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$1,932.37', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928',Attachment:'+',showDate: false },
+    { date: 'Dec 25', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '−$247,476.82'
+    , Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928' ,Attachment:'+' ,showDate: false},
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+' ,showDate: false },
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+    // Add more rows as needed
+  ]);
+
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+  hoveredRow: any = null;
+  onMouseOver(row: any): void {
+    row.isHovered = true;
+  }
+
+  onMouseLeave(row: any): void {
+    row.isHovered = false;
+  }
+
+  isShowDate(row: any): boolean {
+    return row === this.dataSource.data[0] || row.isHovered;
+  }
+
+
   @NgModule({
     imports: [
          FormsModule
@@ -170,5 +201,4 @@ export class TransactionsComponent {
       { date: "Nov8", to: "Payment from Client B", amount:"$5,500.00", Account:"Savings",Payment:"Wire Transfer"},
       { date: "Nov8", to: "Transfer from Account X", amount:"$5,500.00", Account:"Checking",Payment:"Wire Transfer"},
     ];
-
 }

@@ -21,6 +21,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
 import {
   AvatarModule,
@@ -66,6 +69,7 @@ import { WiredrwdownsRecipientDetailsComponent } from './wiredrwdowns-recipient-
 import { PaysomeoneUserDetailsComponent } from './paysomeone-user-details/paysomeone-user-details.component';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
+
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -73,8 +77,11 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent, WiredrwdownsRecipientDetailsComponent, PaysomeoneUserDetailsComponent, PaymentComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, SearchBarComponent, MyModalComponent, BottomPopoverComponent, PaySomeoneComponent, AddReceiveFundsComponent, PaymentRequestComponent, TransferFundsComponent, PaymentsComponent,TransactionsComponent, RequestsComponent, RecipientsComponent, WireDrawdownsComponent, CardsComponent, AccountsComponent, CapitalsComponent, SendMoneyTransferFundsComponent, FundTransferReviewsComponent, AddRecipientDetailsComponent, WiredrwdownsRecipientDetailsComponent, PaysomeoneUserDetailsComponent, PaymentComponent,],
   imports: [
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
     MatRadioModule,
     MatCheckboxModule,
     MatDatepickerModule,

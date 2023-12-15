@@ -102,3 +102,28 @@ mat-tab-body {
 .accounts input {
   margin-right: 20px;
 }
+
+/* transactions.component.css or your global styles */
+.profile-image {
+  width: 30px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  border-radius: 50%; /* Add a border-radius for a circular image */
+  /* Add any other styles you want */
+  margin-right: 4px;
+}
+
+.table-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show-date {
+  overflow: visible;
+  white-space: normal;
+
+}
+
+.mat-row:hover {
+  background-color: #f0f0f0; /* Add your desired hover background color */
+}
