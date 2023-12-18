@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-
+import { ExportService } from '../export.service';
 
 
 const today = new Date();
@@ -30,19 +30,36 @@ export interface TaskSet  {
   encapsulation: ViewEncapsulation.None
 })
 
+
 export class TransactionsComponent {
+
+  /*****EXPORT DATA FROM TRANSACTION AND DISPLAY DATA */
+  dataToExport =
+  [
+    { date: 'Dec 15', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$229.37', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928',Attachment:'+',showDate: false },
+    { date: 'Dec 25', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$988.82', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928' ,Attachment:'+' ,showDate: false},
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '900', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+' ,showDate: false },
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  ];
+
+  constructor(private exportService: ExportService) {
+    this.typesOfShoes.forEach(item => {
+      this.shoesSet.set(item, false);
+    });
+
+    this.filteredOptions = [...this.typesOfShoes];
+
+  }
+  exportData(): void {
+    this.exportService.exportToCsv(this.dataToExport, 'exported_data.csv');
+  }
+
+
   hoveredColumn: string | null = null;
   showDate: boolean = false;
   displayedColumns: string[] = ['date', 'To', 'amount', 'Account', 'Payment Method','Attachment'];
-  dataSource = new MatTableDataSource<any>([
-    { date: 'Dec 15', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$1,932.37', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928',Attachment:'+',showDate: false },
-    { date: 'Dec 25', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '−$247,476.82'
-    , Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928' ,Attachment:'+' ,showDate: false},
-    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+' ,showDate: false },
-    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-    { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: 800, Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-    // Add more rows as needed
-  ]);
+  dataSource = new MatTableDataSource<any>(this.dataToExport);
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
@@ -53,15 +70,40 @@ export class TransactionsComponent {
   onMouseOver(row: any): void {
     row.isHovered = true;
   }
-
   onMouseLeave(row: any): void {
     row.isHovered = false;
   }
-
   isShowDate(row: any): boolean {
     return row === this.dataSource.data[0] || row.isHovered;
   }
 
+// FILTER KEYWORD DATA
+selected: any;
+selectedList: any = [];
+@ViewChild("shoes") shoes: any = [];
+typesOfShoes: any[] = ["Boots", "Clogs", "Loafers", "Moccasins", "Sneakers"];
+shoesSet = new Map();
+
+filteredOptions: any[] = [];
+
+onSearch(searchTerm: string) {
+  this.filteredOptions = this.typesOfShoes.filter(item =>
+    item.toLowerCase().includes(searchTerm)
+  );
+}
+
+selectionChange($event: any) {
+  this.shoesSet.set(
+    $event.option.value,
+    !this.shoesSet.get($event.option.value)
+  );
+}
+
+// FILTER KEYWORD DATA END
+
+
+
+/*****EXPORT DATA FROM TRANSACTION AND DISPLAY DATA END*/
 
   @NgModule({
     imports: [
@@ -83,6 +125,10 @@ export class TransactionsComponent {
 
 
 
+
+
+
+  /**** Option values array for Accounts*/
   isTrade: boolean = false
   checkAllTrades: boolean = false
   trade = [
@@ -99,18 +145,17 @@ export class TransactionsComponent {
     if ((event.target as HTMLInputElement).name === 'trades') {
       this.isTrade = true;
     }
-
     if (this.isTrade && this.checkAllTrades) {
       (event.target as HTMLInputElement).checked = true;
     }
   }
-
   allTrades(event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     this.trade.forEach(item => (item.selected = checked));
   }
+ /**** Option values array for Accounts END */
 
-  // Method
+ /**** Option values array for Methods */
 
   taskSets: TaskSet[] = [
     {
@@ -193,12 +238,6 @@ export class TransactionsComponent {
       }
       taskSet.subtasks.forEach(t => t.completed = completed);
     }
-    public transaction: Array<any> = [
-      { date: "Nov1", to: "Deposit from Client A", amount:"$7,500.00", Account:"Checking",Payment:"Wire Transfer"},
-      { date: "Nov4", to: "Deposit from Client B", amount:"$7,500.00", Account:"Checking",Payment:"Wire Transfer"},
-      { date: "Nov6", to: "Deposit from Client A", amount:"$8,500.00", Account:"Checking",Payment:"Wire Transfer"},
-      { date: "Nov8", to: "Payment from Client B", amount:"$5,500.00", Account:"Savings",Payment:"Wire Transfer"},
-      { date: "Nov8", to: "Payment from Client B", amount:"$5,500.00", Account:"Savings",Payment:"Wire Transfer"},
-      { date: "Nov8", to: "Transfer from Account X", amount:"$5,500.00", Account:"Checking",Payment:"Wire Transfer"},
-    ];
+/**** Option values array for Methods END*/
+
 }
