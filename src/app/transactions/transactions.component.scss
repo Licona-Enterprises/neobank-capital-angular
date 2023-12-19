@@ -109,11 +109,14 @@ mat-tab-body {
 
 /* transactions.component.css or your global styles */
 .profile-image {
-  width: 30px; /* Set the desired width */
-  height: 30px; /* Set the desired height */
-  border-radius: 50%; /* Add a border-radius for a circular image */
-  /* Add any other styles you want */
-  margin-right: 4px;
+  width: 30px;
+  /*Setthedesiredwidth*/height: 30px;
+  /*Setthedesiredheight*/border-radius: 50%;
+  /*Addaborder-radiusforacircularimage*//*Addanyotherstylesyouwant*/margin-right: 4px;
+  // -webkit-border-radius:;
+  // -moz-border-radius:;
+  // -ms-border-radius:;
+  // -o-border-radius:;
 }
 
 .table-cell {
@@ -142,6 +145,10 @@ mat-tab-body {
   border-radius: 20px;
   padding: 7px 17px;
   color: #000015;
+  // -webkit-border-radius:;
+  // -moz-border-radius:;
+  // -ms-border-radius:;
+  // -o-border-radius:;
 }
 .mat-icon {
   color: #fff;
@@ -155,6 +162,10 @@ mat-tab-body {
   border-radius: 25px;
   padding: 8px 32px;
   position: relative;
+  // -webkit-border-radius:;
+  // -moz-border-radius:;
+  // -ms-border-radius:;
+  // -o-border-radius:;
 }
 ::ng-deep .mat-select {
   /* Your styles here */
@@ -164,4 +175,24 @@ mat-tab-body {
 ::ng-deep .mat-select-trigger {
   /* Styles for the trigger button */
   background-color: #e0e0e0; /* Example: Set a background color */
+}
+
+
+.select-glcode {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .4px;
+  line-height: 20px;
+  color: #3b55d6;
+  float: inline-end;
+  margin-left: 10px;
+}
+
+.gl-code-span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 20px;
+  color: #565674;
+  padding: 0px 0px 0px 10px;
 }

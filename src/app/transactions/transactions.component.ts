@@ -14,7 +14,6 @@ const today = new Date();
 const month = today.getMonth();
 const year = today.getFullYear();
 
-
 export interface TaskSet  {
   name: string;
   completed: boolean;
@@ -55,7 +54,6 @@ export class TransactionsComponent {
     this.exportService.exportToCsv(this.dataToExport, 'exported_data.csv');
   }
 
-
   hoveredColumn: string | null = null;
   showDate: boolean = false;
   displayedColumns: string[] = ['date', 'To', 'amount', 'Account', 'Payment Method','Attachment'];
@@ -83,12 +81,13 @@ selectedList: any = [];
 @ViewChild("shoes") shoes: any = [];
 typesOfShoes: any[] = ["Boots", "Clogs", "Loafers", "Moccasins", "Sneakers"];
 shoesSet = new Map();
-
 filteredOptions: any[] = [];
 
-onSearch(searchTerm: string) {
+//keyword filter
+searchTerm: string = '';
+onSearch() {
   this.filteredOptions = this.typesOfShoes.filter(item =>
-    item.toLowerCase().includes(searchTerm)
+    item.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
 }
 
@@ -101,7 +100,87 @@ selectionChange($event: any) {
 
 // FILTER KEYWORD DATA END
 
+//FILTER GL CODE
+selectedg: any;
+selectedListg: any = [];
+@ViewChild("glcodes") glcodes: any = [];
+typesOfGl: any[] = [
+                "120 - Accounts Receivable",
+                "620 - Entertainment",
+                "664 - Utilities",
+                "668 - Wages and Salaries",
+              ];
+glSet = new Map();
+filteredGl: any[] = [];
+searchGl: string = '';
+ngOnInit() {
+  this.filteredGl = this.typesOfGl.slice();
+}
+onSearchGl() {
+  this.filteredGl = this.typesOfGl.filter(item =>
+    item.toLowerCase().includes(this.searchGl.toLowerCase())
+  );
+}
 
+selectionChangeGl($event: any) {
+  this.glSet.set(
+    $event.option.value,
+    !this.glSet.get($event.option.value)
+  );
+}
+
+allOptionsSelected: boolean = false;//GL selectAll
+selectAll() {
+  this.allOptionsSelected = !this.allOptionsSelected;
+  this.glSet.clear();
+  this.typesOfGl.forEach(glcode => {
+    this.glSet.set(glcode, this.allOptionsSelected);
+  });
+  this.selectedg = this.allOptionsSelected ? Array.from(this.glSet.keys()) : [];
+  this.selectionChangeGl({ option: { value: undefined } });
+}
+//FILTER GL CODE
+
+/*****Cards Filter*****/
+  searchCard: string = '';
+  cards: any[] = [
+    {
+      label: 'Your Cards',
+      items: [
+        'Jane B. ••1234',
+        'Jane B. ••1231',
+        'Jane B. ••1233',
+        'Jane B. ••1222'
+      ]
+    },
+    {
+      label: 'Others Cards',
+      items: [
+        'Aluna T. ••0330',
+        'Jessica A. ••9914',
+        'Landon S. ••4929',
+        'Aluna T. ••0330'
+      ]
+    },
+    {
+      label: 'Cancelled Cards',
+      items: [
+        'Landon S. ••4929',
+        'Aluna T. ••0330',
+        'Landon S. ••4929',
+        'Aluna T. ••0330'
+      ]
+    }
+  ];
+  filteredCards: any[] = [];
+
+  onSearchCardChange(): void {
+    this.filteredCards = this.cards.filter(section =>
+      section.label.toLowerCase().includes(this.searchCard.toLowerCase()) ||
+      section.items.some((item: string) => item.toLowerCase().includes(this.searchCard.toLowerCase()))
+    );
+  }
+/*****Cards Filter*****/
 
 /*****EXPORT DATA FROM TRANSACTION AND DISPLAY DATA END*/
 
@@ -122,11 +201,6 @@ selectionChange($event: any) {
     start: new FormControl(new Date(year, month, 15)),
     end: new FormControl(new Date(year, month, 19)),
   });
-
-
-
-
-
 
   /**** Option values array for Accounts*/
   isTrade: boolean = false

@@ -25,7 +25,6 @@
     </div>
 
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms" class="mat-tab-body-parent">
-
       <mat-tab>
           <ng-template mat-tab-label>
             <!-- <mat-icon class="me-1 mt-2">calendar_today</mat-icon>  -->
@@ -34,18 +33,10 @@
           <div class="mat-tab-body-content">
             <div class="content-body">
               <div  class="content-body1 w-50">
-
-
-
                 <!-- Display the selected option -->
                 <!-- <p>You selected: {{ selectedOption }}</p> -->
-
                 <mat-form-field>
                   <mat-label>Select</mat-label>
-
-
-
-
                   <mat-select>
                       <mat-option value="custom" selected>Custom</mat-option>
                       <mat-option value="Last 30 days" >Last 30 days</mat-option>
@@ -59,7 +50,6 @@
                 </mat-form-field>
               </div>
               <div  class="content-body2">
-
                 <mat-form-field>
                 <mat-date-range-input
                 [formGroup]="campaignOne"
@@ -87,35 +77,23 @@
               <div  class="content-body1 w-80">
                 <mat-form-field appearance="fill">
                   <mat-label>Search Here</mat-label>
-                  <input type="text" matInput placeholder="Type something..">
+                  <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchTerm" (input)="onSearch()">
                   <mat-icon matSuffix>search</mat-icon>
-              </mat-form-field>
-                </div>
-                <div  class="content-body2">
-                  <!-- <app-search (search)="onSearch($event)"></app-search> -->
-
-                  <mat-selection-list #shoes (selectionChange)="selectionChange($event)" [(ngModel)]="selected">
-                    <mat-list-option *ngFor="let shoe of filteredOptions" checkboxPosition="before" [value]="shoe"
-                      [selected]="shoesSet.get(shoe)">
-                      {{shoe}}
-                    </mat-list-option>
-                  </mat-selection-list>
-
-                  <p>
-                    Options selected: {{shoes.selectedOptions.selected}}
-                  </p>
-                  <!-- <section  class="cb-wrapper ms-4" >
-                    <mat-checkbox class="example-margin">Jason Green</mat-checkbox>
-                    <mat-checkbox class="example-margin">Lighthouse Properties</mat-checkbox>
-                    <mat-checkbox class="example-margin">Domestic Ads</mat-checkbox>
-                    <mat-checkbox class="example-margin">liyah McMahon</mat-checkbox>
-                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                    <mat-checkbox class="example-margin">liyah McMahon</mat-checkbox>
-                    <mat-checkbox class="example-margin">Jordi O'Donnell</mat-checkbox>
-                  </section> -->
-                </div>
-                </div>
-        </div>
+                </mat-form-field>
+              </div>
+              <div  class="content-body2">
+                <mat-selection-list #shoes (selectionChange)="selectionChange($event)" [(ngModel)]="selected">
+                  <mat-list-option *ngFor="let shoe of filteredOptions" checkboxPosition="before" [value]="shoe"
+                    [selected]="shoesSet.get(shoe)">
+                    {{shoe}}
+                  </mat-list-option>
+                </mat-selection-list>
+                <p>
+                  Options selected: {{shoes.selectedOptions.selected}}
+                </p>
+              </div>
+            </div>
+          </div>
       </mat-tab>
       <mat-tab>
           <ng-template mat-tab-label><mat-icon class="me-1 mt-2">last_page</mat-icon> Amount</ng-template>
@@ -157,17 +135,27 @@
             <div  class="content-body1 w-80">
               <mat-form-field appearance="fill">
                 <mat-label>Search Here</mat-label>
-                <input type="text" matInput placeholder="Type something..">
+                <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchGl" (input)="onSearchGl()">
                 <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-              </div>
+              </mat-form-field>
+            </div>
               <div  class="content-body2">
-                <section  class="cb-wrapper ms-4" >
-                  <mat-checkbox class="example-margin">120 - Accounts Receivable</mat-checkbox>
-                  <mat-checkbox class="example-margin">620 - Entertainment</mat-checkbox>
-                  <mat-checkbox class="example-margin">664 - Utilities</mat-checkbox>
-                  <mat-checkbox class="example-margin">668 - Wages and Salaries</mat-checkbox>
-                </section>
+                <span class="gl-code-span">GL codes</span>
+                <span mat-raised-button color="primary" (click)="selectAll()" class="select-glcode">
+                  {{ allOptionsSelected ? 'Deselect All' : 'Select All' }}
+                </span>
+                <mat-selection-list #glcodes (selectionChangeGl)="selectionChangeGl($event)" [(ngModel)]="selectedg">
+                  <mat-list-option *ngFor="let glcode of filteredGl" checkboxPosition="before" [value]="glcode"
+                    [selected]="glSet.get(glcode)">
+                    {{glcode}}
+                  </mat-list-option>
+                </mat-selection-list>
+                <p>
+                  Options selected:
+                  <span *ngFor="let selectedOption of glcodes.selectedOptions.selected">
+                    {{ selectedOption.value }},
+                  </span>
+                </p>
               </div>
           </div>
          </div>
@@ -179,31 +167,20 @@
       <mat-divider></mat-divider>
       <div class="mat-tab-body-content">
         <div class="content-body">
-            <div  class="content-body1 w-80 card-content">
-              <section  class="cb-wrapper ms-4" >
-                <label class="ms-3">Your Cards</label>
-                <mat-divider></mat-divider>
-                <mat-checkbox class="example-margin">Jane B. ••1234 </mat-checkbox>
-                <mat-checkbox class="example-margin">Jane B. ••1231</mat-checkbox>
-                <mat-checkbox class="example-margin">Jane B. ••1233</mat-checkbox>
-                <mat-checkbox class="example-margin">Jane B. ••1222</mat-checkbox>
-              </section>
-              <section  class="cb-wrapper ms-4" >
-                <label class="ms-3">Others Cards</label>
-                <mat-divider></mat-divider>
-                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
-                <mat-checkbox class="example-margin">Jessica A. ••9914</mat-checkbox>
-                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
-                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
-              </section>
-              <section  class="cb-wrapper ms-4" >
-                <label class="ms-3">Cancelled Cards</label>
-                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
-                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
-                <mat-checkbox class="example-margin">Landon S. ••4929</mat-checkbox>
-                <mat-checkbox class="example-margin">Aluna T. ••0330</mat-checkbox>
-              </section>
-            </div>
+          <div class="content-body1 w-80">
+            <mat-form-field appearance="fill">
+              <mat-label>Search Here</mat-label>
+              <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchCard" (input)="onSearchCardChange()" />
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="content-body1 w-80 card-content">
+            <section *ngFor="let section of filteredCards.length ? filteredCards : cards" class="cb-wrapper ms-4">
+              <label class="ms-3">{{ section.label }}</label>
+              <mat-divider></mat-divider>
+              <mat-checkbox *ngFor="let item of section.items" class="example-margin">{{ item }}</mat-checkbox>
+            </section>
+          </div>
         </div>
        </div>
   </mat-tab>
