@@ -30,7 +30,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'pay-someone', component: PaySomeoneComponent },
-  { path: 'payments', component: PaymentsComponent },
   { path: 'add-receive-funds', component: AddReceiveFundsComponent },
   { path: 'payment-request', component: PaymentRequestComponent },
   { path: 'transfer-funds', component: TransferFundsComponent },

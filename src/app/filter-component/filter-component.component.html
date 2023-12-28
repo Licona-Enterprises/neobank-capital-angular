@@ -1,63 +1,37 @@
 
-<div class="container">
-  <h2>Transactions</h2>
-  <div class="button-container" >
-    <button mat-raised-button color="primary" class="left-button" (click)="toggleCardVisibility()">Add Filter</button>
-    <button mat-raised-button color="primary" class="right-button">Export All</button>
+  <div class="d-flex mt-2">
+    <h4 class="px-3 py-2"> My Transactions</h4><mat-slide-toggle class="py-2"></mat-slide-toggle>
+
   </div>
-  <mat-card  *ngIf="isCardVisible" class="w-100">
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-      <mat-tab label="Date"> <mat-divider></mat-divider>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms" class="mat-tab-body-parent">
+    <mat-tab>
+
+
+        <ng-template mat-tab-label> Date88 </ng-template>
+        <mat-divider></mat-divider>
+
+
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label> Keyword</ng-template>
+        <mat-divider></mat-divider>
         <div class="mat-tab-body-content keywordSearch">
-          <div class="mat-tab-body-content DateTab">
-            <div class="datepickerRange">
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="text"
-                  (change)="hello(selectedDates)"
-                  ngxDaterangepickerMd
-                  [(ngModel)]="selectedDates"
-                  [showCustomRangeLabel]="true"
-                  [alwaysShowCalendars]="true"
-                  [ranges]="ranges"
-                  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                  startKey="start"
-                  endKey="end"
-                  [linkedCalendars]="true"
-                  [showClearButton]="true"
-                  class="form-control"
-                  [showDropdowns]="true"
-                  [showRangeLabelOnInput]="false"
-                  [showRangeLabelOnInput]="showRangeLabelOnInput"
-                  [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
-                  placeholder="Select please..."/>
-
-
-                  <label for="calendar-input" class="date-range-picker-icon fa fa-calendar"></label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <app-datefilter-component></app-datefilter-component>        -->
+            <mat-form-field class="w-100">
+              <mat-label>Search Here</mat-label>
+              <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchTerm" (input)="onSearch()" mt="5">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <mat-selection-list #shoes (selectionChange)="selectionChange($event)" [(ngModel)]="selected">
+              <mat-list-option *ngFor="let shoe of filteredOptions" checkboxPosition="before" [value]="shoe"
+                [selected]="shoesSet.get(shoe)">
+                {{shoe}}
+              </mat-list-option>
+            </mat-selection-list>
         </div>
-
-      </mat-tab>
-      <mat-tab label="Keyword"> <mat-divider></mat-divider>
-        <div class="mat-tab-body-content keywordSearch">
-          <mat-form-field class="w-100">
-            <mat-label>Search Here</mat-label>
-            <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchTerm" (input)="onSearch()" mt="5">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-          <mat-selection-list #shoes (selectionChange)="selectionChange($event)" [(ngModel)]="selected">
-            <mat-list-option *ngFor="let shoe of filteredOptions" checkboxPosition="before" [value]="shoe"
-              [selected]="shoesSet.get(shoe)">
-              {{shoe}}
-            </mat-list-option>
-          </mat-selection-list>
-      </div>
-      </mat-tab>
-      <mat-tab label="Amount"> <mat-divider></mat-divider>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label> Amount</ng-template>
+        <mat-divider></mat-divider>
         <div class="mat-tab-body-content AmountTab">
           <div class="row">
               <mat-radio-group aria-label="Select an option" class="col-md-12 mb-4">
@@ -85,30 +59,39 @@
               </mat-form-field>
           </div>
          </div>
-      </mat-tab>
-      <mat-tab label="GL code"> <mat-divider></mat-divider>
-        <div class="mat-tab-body-content GLCodeTab">
-          <mat-form-field class="w-100">
-            <mat-label>Search Here</mat-label>
-            <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchGl" (input)="onSearchGl()">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-            <span class="gl-code-span">GL codes</span>
-            <span mat-raised-button color="primary" (click)="selectAll()" class="select-glcode">
-              {{ allOptionsSelected ? 'Deselect All' : 'Select All' }}
-            </span>
-            <mat-divider></mat-divider>
-            <mat-selection-list #glcodes (selectionChangeGl)="selectionChangeGl($event)" [(ngModel)]="selectedg">
-              <mat-list-option *ngFor="let glcode of filteredGl" checkboxPosition="before" [value]="glcode"
-                [selected]="glSet.get(glcode)">
-                {{glcode}}
-              </mat-list-option>
-            </mat-selection-list>
-
-     </div>
-      </mat-tab>
-      <mat-tab label="Cards"> <mat-divider></mat-divider>
-        <div class="mat-tab-body-content CardsTab">
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label> GL code</ng-template>
+      <mat-divider></mat-divider>
+      <div class="mat-tab-body-content GLCodeTab">
+            <mat-form-field class="w-100">
+              <mat-label>Search Here</mat-label>
+              <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchGl" (input)="onSearchGl()">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+              <span class="gl-code-span">GL codes</span>
+              <span mat-raised-button color="primary" (click)="selectAll()" class="select-glcode">
+                {{ allOptionsSelected ? 'Deselect All' : 'Select All' }}
+              </span>
+              <mat-divider></mat-divider>
+              <mat-selection-list #glcodes (selectionChangeGl)="selectionChangeGl($event)" [(ngModel)]="selectedg">
+                <mat-list-option *ngFor="let glcode of filteredGl" checkboxPosition="before" [value]="glcode"
+                  [selected]="glSet.get(glcode)">
+                  {{glcode}}
+                </mat-list-option>
+              </mat-selection-list>
+              <!-- <p>
+                Options selected:
+                <span *ngFor="let selectedOption of glcodes.selectedOptions.selected">
+                  {{ selectedOption.value }},
+                </span>
+              </p> -->
+       </div>
+    </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label> Cards</ng-template>
+    <mat-divider></mat-divider>
+    <div class="mat-tab-body-content CardsTab">
           <mat-form-field class="w-100" >
             <mat-label>Search Here</mat-label>
             <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchCard" (input)="onSearchCardChange()" />
@@ -120,8 +103,10 @@
             <mat-checkbox *ngFor="let item of section.items" class="example-margin">{{ item }}</mat-checkbox>
           </section>
      </div>
-      </mat-tab>
-      <mat-tab label="Method"> <mat-divider></mat-divider>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label> Method</ng-template>
+        <mat-divider></mat-divider>
         <div class="mat-tab-body-content MethodTab" *ngFor="let taskSet of taskSets">
           <section class="example-section">
             <span class="example-list-section">
@@ -146,9 +131,13 @@
             </span>
           </section>
         </div>
-      </mat-tab>
-      <mat-tab label="Accounts"> <mat-divider></mat-divider>
-        <div class="mat-tab-body-content Accounts">
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Accounts</ng-template>
+        <mat-divider></mat-divider>
+        <div class="mat-tab-body-content">
+          <div class="content-body">
+            <div  class="content-body1 accounts">
               <label class="btn btn-filter">
                 <input type="checkbox" name="allTrades" [value]="trade" (change)="allTrades($event)">Select All
               </label>
@@ -158,12 +147,14 @@
                   <input type="checkbox" name="trades" [checked]="trd.selected" (change)="changeTradesByCategory($event)">{{ trd.label }}
                 </label>
               </ng-container>
-
-
+            </div>
+          </div>
       </div>
-      </mat-tab>
-      <mat-tab label="Status"> <mat-divider></mat-divider>
-        <div class="mat-tab-body-content Status">
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Status</ng-template>
+        <mat-divider></mat-divider>
+        <div class="mat-tab-body-content">
           <div  class="content-body2">
             <section  class="cb-wrapper ms-4" >
               <mat-checkbox class="example-margin">Posted</mat-checkbox>
@@ -178,8 +169,10 @@
           </div>
 
         </div>
-      </mat-tab>
-      <mat-tab label="Attachments"> <mat-divider></mat-divider>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label> Attachments</ng-template>
+        <mat-divider></mat-divider>
         <div class="mat-tab-body-content">
           <div class="content-body">
             <div  class="content-body1 Attachments">
@@ -191,27 +184,6 @@
               </div>
             </div>
         </div>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card>
-
-
-      <mat-table [dataSource]="dataSource" matSort>
-        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</mat-header-cell>
-            <mat-cell *matCellDef="let row" class="table-cell" [ngClass]="{'show-date': column === 'date' && isShowDate(row)}" (mouseover)="onMouseOver(row)" (mouseleave)="onMouseLeave(row)">
-              <div *ngIf="column === 'date'">{{ isShowDate(row) ? row[column] : '' }}</div>
-            <ng-container *ngIf="column === 'To'">
-              <img *ngIf="row[column]?.imageUrl" [src]="row[column].imageUrl" alt="Profile Image" width="50" height="50"  class="profile-image" />
-              {{ row[column]?.name }}
-            </ng-container>
-            <div *ngIf="column !== 'To' && column !== 'date'">{{ row[column] }}</div>
-          </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
-</div>
-
+    </mat-tab>
+</mat-tab-group>
 

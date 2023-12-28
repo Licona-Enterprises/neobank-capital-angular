@@ -21,3 +21,45 @@
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
 }
+.mdc-tab {
+  padding-left:0px!important;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.left-button {
+  margin-right: auto;
+}
+
+.right-button {
+  margin-left: auto;
+}
+.mat-mdc-card {
+  box-shadow: 0 0 10px 1px #00000026 !important;
+  border-radius: 1em !important;
+}
+.mat-mdc-tab-body{
+  min-height: 400px!important;
+}
+.AmountTab, .GLCodeTab, .CardsTab, .Attachments, .Status, .Accounts, .MethodTab, .keywordSearch {
+  padding: 20px 40px;
+}
+.Accounts label {
+  display: flex;
+}
+.mat-mdc-tab-body-wrapper {
+  position: relative;
+  min-height: 300px!important;
+
+}
+.cb-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  flex-flow: column;
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
