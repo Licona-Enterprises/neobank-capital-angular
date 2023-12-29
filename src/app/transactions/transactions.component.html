@@ -1,4 +1,3 @@
-
 <div class="container">
   <h2>Transactions</h2>
   <div class="button-container" >
@@ -10,11 +9,11 @@
       <mat-tab label="Date"> <mat-divider></mat-divider>
         <div class="mat-tab-body-content keywordSearch">
           <div class="mat-tab-body-content DateTab">
-            <div class="datepickerRange">
+            <div class="datepickerRangge">
               <div class="row">
                 <div class="col-md-12">
                   <input type="text"
-                  (change)="hello(selectedDates)"
+                  (change)="filterAccordingToDates(selectedDates)"
                   ngxDaterangepickerMd
                   [(ngModel)]="selectedDates"
                   [showCustomRangeLabel]="true"
@@ -45,7 +44,7 @@
       <mat-tab label="Keyword"> <mat-divider></mat-divider>
         <div class="mat-tab-body-content keywordSearch">
           <mat-form-field class="w-100">
-            <mat-label>Search Here</mat-label>
+            <mat-label>Search Here2</mat-label>
             <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchTerm" (input)="onSearch()" mt="5">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
@@ -54,6 +53,7 @@
               [selected]="shoesSet.get(shoe)">
               {{shoe}}
             </mat-list-option>
+
           </mat-selection-list>
       </div>
       </mat-tab>
@@ -70,17 +70,17 @@
               <mat-form-field class="col-md-4">
                   <mat-label>Specific amount</mat-label>
 
-                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?" >
+                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?"  (input)="filterAccordingtoSpecificAmount($event)">
                   <mat-icon matPrefix> = attach_money</mat-icon>
               </mat-form-field>
               <mat-form-field class="col-md-4">
                   <mat-label>At least...</mat-label>
-                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?">
+                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?" (input)="filterAccordingtoAtLeast($event)">
                   <mat-icon matPrefix> ≥ attach_money</mat-icon >
               </mat-form-field>
               <mat-form-field class="col-md-4">
                   <mat-label>No more than...</mat-label>
-                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?">
+                  <input #inputID matInput placeholder="0.00" type="number" step="0.01" pattern="\d+(\.\d{1,2})?" (input)="filterAccordingtoNoMoreThat($event)">
                   <mat-icon matPrefix> ≤ attach_money</mat-icon>
               </mat-form-field>
           </div>
@@ -89,7 +89,7 @@
       <mat-tab label="GL code"> <mat-divider></mat-divider>
         <div class="mat-tab-body-content GLCodeTab">
           <mat-form-field class="w-100">
-            <mat-label>Search Here</mat-label>
+            <mat-label>Search Here3</mat-label>
             <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchGl" (input)="onSearchGl()">
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
@@ -110,7 +110,7 @@
       <mat-tab label="Cards"> <mat-divider></mat-divider>
         <div class="mat-tab-body-content CardsTab">
           <mat-form-field class="w-100" >
-            <mat-label>Search Here</mat-label>
+            <mat-label>Search Here1</mat-label>
             <input type="text" matInput placeholder="Type something.." [(ngModel)]="searchCard" (input)="onSearchCardChange()" />
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
@@ -158,9 +158,7 @@
                   <input type="checkbox" name="trades" [checked]="trd.selected" (change)="changeTradesByCategory($event)">{{ trd.label }}
                 </label>
               </ng-container>
-
-
-      </div>
+          </div>
       </mat-tab>
       <mat-tab label="Status"> <mat-divider></mat-divider>
         <div class="mat-tab-body-content Status">
@@ -176,7 +174,6 @@
               <span id="Posted_filter_checkbox" class="styles__checkboxInfoText__xgrR">Transaction was stopped by you, a teammate, or Mercury employee before money was transferred..</span>
             </section>
           </div>
-
         </div>
       </mat-tab>
       <mat-tab label="Attachments"> <mat-divider></mat-divider>
@@ -194,9 +191,7 @@
       </mat-tab>
     </mat-tab-group>
   </mat-card>
-
-
-      <mat-table [dataSource]="dataSource" matSort>
+      <mat-table [dataSource]="dataSource" matSort class="transactionTable">
         <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let row" class="table-cell" [ngClass]="{'show-date': column === 'date' && isShowDate(row)}" (mouseover)="onMouseOver(row)" (mouseleave)="onMouseLeave(row)">
@@ -211,7 +206,6 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-
 </div>
 
 

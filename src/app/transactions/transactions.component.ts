@@ -2,7 +2,6 @@
 import { Component, ViewEncapsulation,ViewChild } from '@angular/core';
 import dayjs, { Dayjs } from 'dayjs';
 // import * as dayjs from 'dayjs';
-
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -29,8 +28,60 @@ export class TransactionsComponent {
   keepCalendarOpeningWithRange: boolean;
   monthstart = ''
   monthend = ''
+  specificAmount= ''
   newdata:any[] = []
-  hello = (data:any) =>{
+  filterAccordingtoSpecificAmount = (event:Event):void =>{
+
+    this.newdata = this.dataToExport.filter((item:any)=>{
+      console.log(item.amount.slice(1))
+      if((item.amount.slice(1)) === (event.target as HTMLInputElement).value){
+        return true
+      }
+      else if((event.target as HTMLInputElement).value==='')
+        return true
+      else
+        return false
+    }
+    )
+    console.log(this.newdata)
+    this.dataSource = new MatTableDataSource<any>(this.newdata);
+  }
+
+  filterAccordingtoAtLeast = (event:Event):void => {
+    this.newdata = this.dataToExport.filter((item:any)=>{
+      console.log(+item.amount.slice(1) >= +(event.target as HTMLInputElement).value)
+      console.log(typeof +item.amount.slice(1))
+
+      if(+item.amount.slice(1) >= +(event.target as HTMLInputElement).value){
+        return true
+      }
+      else if((event.target as HTMLInputElement).value==='')
+        return true
+      else
+        return false
+    }
+    )
+    this.dataSource = new MatTableDataSource<any>(this.newdata);
+  }
+
+  filterAccordingtoNoMoreThat = (event:Event):void => {
+    this.newdata = this.dataToExport.filter((item:any)=>{
+      console.log(+item.amount.slice(1) >= +(event.target as HTMLInputElement).value)
+      console.log(typeof +item.amount.slice(1))
+
+      if(+item.amount.slice(1) <= +(event.target as HTMLInputElement).value){
+        return true
+      }
+      else if((event.target as HTMLInputElement).value==='')
+        return true
+      else
+        return false
+    }
+    )
+    this.dataSource = new MatTableDataSource<any>(this.newdata);
+  }
+
+  filterAccordingToDates = (data:any) =>{
     console.log(data)
     console.log(data.end['$d'].toLocaleString('default', { month: 'short' }))
     this.monthend = data.end['$d'].toLocaleString('default', { month: 'short' })
@@ -51,7 +102,7 @@ export class TransactionsComponent {
     'Today': [moment(), moment()],
     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-    'Last 30 Days': [moment().subtract(29, 'days')   , moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
     'This Month': [moment().startOf('month'), moment().endOf('month')],
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
   }
@@ -60,8 +111,6 @@ export class TransactionsComponent {
   isInvalidDate = (m: moment.Moment) =>  {
     return this.invalidDates.some(d => d.isSame(m, 'day') )
   }
-
-
 
   constructor(private exportService: ExportService) {
     this.selectedDates = { startDate: dayjs(), endDate: dayjs() };
@@ -76,21 +125,23 @@ export class TransactionsComponent {
 /*****EXPORT DATA FROM TRANSACTION AND DISPLAY DATA */
 dataToExport =
 [
-  { date: 'Dec 15', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$229.37', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928',Attachment:'+',showDate: false },
-  { date: 'Dec 25', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$988.82', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928' ,Attachment:'+' ,showDate: false},
-  { date: 'Dec 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '900', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+' ,showDate: false },
-  { date: 'Nov 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Nov 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Nov 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Nov 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Oct 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Oct 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Sep 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
-  { date: 'Oct 11', To:{ name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount:' 800', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Dec 15', To: { name: 'John Doe', imageUrl: '../../assets/images/images.jpg' }, amount: '$229.37', Account: 'AR', 'Payment Method': 'Jane B. ••4928',Attachment:'+',showDate: false },
+  { date: 'Dec 25', To: { name: 'James Johnson', imageUrl: '../../assets/images/images.jpg' }, amount: '$988.82', Account: 'Ops / Payroll', 'Payment Method': 'Jane B. ••4928' ,Attachment:'+' ,showDate: false},
+  { date: 'Dec 11', To:{ name: 'Emily Davis', imageUrl: '../../assets/images/images.jpg' }, amount: '$900.45', Account: 'Credit account', 'Payment Method': 'Landon S. ••4929',Attachment:'+' ,showDate: false },
+  { date: 'Nov 11', To:{ name: 'Robert Brown', imageUrl: '../../assets/images/images.jpg' }, amount: '$800', Account: 'AP', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Nov 11', To:{ name: 'Olivia White', imageUrl: '../../assets/images/images.jpg' }, amount:'$700', Account: 'Treasury', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Nov 11', To:{ name: 'Michael Taylor', imageUrl: '../../assets/images/images.jpg' }, amount:'$200', Account: 'Credit account', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Nov 11', To:{ name: 'Sophia Miller', imageUrl: '../../assets/images/images.jpg' }, amount:'$3000', Account: 'Treasury', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Oct 11', To:{ name: 'William Anderson', imageUrl: '../../assets/images/images.jpg' }, amount:'$2000', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Oct 11', To:{ name: 'Ava Robinson', imageUrl: '../../assets/images/images.jpg' }, amount:'$900.50', Account: 'AR', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Sep 11', To:{ name: 'Benjamin Wilson', imageUrl: '../../assets/images/images.jpg' }, amount:'$600.45', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
+  { date: 'Oct 11', To:{ name: 'Grace Harris', imageUrl: '../../assets/images/images.jpg' }, amount:'$800.62', Account: 'Ops / Payroll', 'Payment Method': 'Landon S. ••4929',Attachment:'+'  ,showDate: false},
 ];
+
 exportData(): void {
   this.exportService.exportToCsv(this.dataToExport, 'exported_data.csv');
 }
+
 hoveredColumn: string | null = null;
 showDate: boolean = false;
 displayedColumns: string[] = ['date', 'To', 'amount', 'Account', 'Payment Method','Attachment'];
@@ -115,21 +166,58 @@ isShowDate(row: any): boolean {
 selected: any;
 selectedList: any = [];
 @ViewChild("shoes") shoes: any = [];
-typesOfShoes: any[] = ["Jason Green", "Lighthouse Properties", "Domestic Ads", "Aliyah McMahon", "Jordi O'Donnell","Catherine Ndereba","Jerick Cheung"];
+typesOfShoes: any[] = ["John Doe", "James Johnson", "Emily Davis", "Robert Brown", "Olivia White","Michael Taylor","Sophia Miller","William Anderson","Ava Robinson","Benjamin Wilson","Grace Harris"];
 shoesSet = new Map();
-filteredOptions:any[] =  ["Jason Green", "Lighthouse Properties", "Domestic Ads", "Aliyah McMahon", "Jordi O'Donnell","Catherine Ndereba","Jerick Cheung"] ;
+filteredOptions:any[] =  ["John Doe", "James Johnson", "Emily Davis", "Robert Brown", "Olivia White","Michael Taylor","Sophia Miller","William Anderson","Ava Robinson","Benjamin Wilson","Grace Harris"] ;
 //keyword filter
+keyWordsArray : any[] = []
 searchTerm: string = '';
 onSearch() {
-  this.filteredOptions = this.typesOfShoes.filter(item =>
-    item.toLowerCase().includes(this.searchTerm.toLowerCase())
-  );
+  this.filteredOptions = this.typesOfShoes.filter(item =>{
+    if(item.toLowerCase().includes(this.searchTerm.toLowerCase())){
+      return true
+    }else if(this.searchTerm===''){
+      return true
+    } else{
+      return false
+    }
+  }
+  )
+  console.log(this.filteredOptions)
+  // this.dataSource = new MatTableDataSource<any>(this.filteredOptions);
 }
 selectionChange($event: any) {
-  this.shoesSet.set(
-    $event.option.value,
-    !this.shoesSet.get($event.option.value)
-  );
+  console.log($event)
+  console.log($event.options[0]._selected)
+  console.log($event.options[0]._value)
+  if($event.options[0]._selected){
+    this.keyWordsArray.push($event.options[0]._value)
+  }else if($event.options[0]._selected===false){
+    if(this.keyWordsArray.includes($event.options[0]._value)){
+      let index=this.keyWordsArray.indexOf($event.options[0]._value)
+      this.keyWordsArray.splice(index,1)
+    }
+  }
+  console.log("this.keyWordsArray",this.keyWordsArray)
+
+  let filterdata = this.dataToExport.filter(data=>{
+    if(this.keyWordsArray.includes(data.To.name)){
+      return true
+    } else if(this.keyWordsArray.length===0){
+      return true
+    } else
+      return false
+  })
+
+  console.log("filtereddata",filterdata)
+
+  // this.shoesSet.set(
+  //   $event.option.value,
+  //   !this.shoesSet.get($event.option.value)
+  // );
+  this.dataSource = new MatTableDataSource<any>(filterdata);
+  console.log("this.shoesSet",this.shoesSet)
+
 }
 // FILTER KEYWORD DATA END
 
@@ -229,6 +317,7 @@ onSearchCardChange(): void {
  ];
 
  changeTradesByCategory(event: Event) {
+  console.log("changeTradesByCategory is run")
    if ((event.target as HTMLInputElement).name === 'trades') {
      this.isTrade = true;
    }
